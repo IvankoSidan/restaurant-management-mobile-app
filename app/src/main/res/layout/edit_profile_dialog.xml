@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg">
+
+    <EditText
+        android:id="@+id/personName"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:background="@drawable/profile_edit_profile"
+        android:hint="Enter your name"
+        android:textColorHint="@color/black"
+        android:paddingStart="16dp"
+        android:textStyle="italic"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/personEmail"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Enter your email"
+        android:textColorHint="@color/black"
+        android:paddingStart="16dp"
+        android:textStyle="italic"
+        android:textSize="14sp"
+        android:background="@drawable/profile_edit_profile"
+        app:layout_constraintEnd_toEndOf="@+id/personName"
+        app:layout_constraintStart_toStartOf="@+id/personName"
+        app:layout_constraintTop_toBottomOf="@+id/personName" />
+
+    <EditText
+        android:id="@+id/personPassword"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Enter your passsword"
+        android:textColorHint="@color/black"
+        android:paddingStart="16dp"
+        android:textStyle="italic"
+        android:textSize="14sp"
+        android:background="@drawable/profile_edit_profile"
+        app:layout_constraintEnd_toEndOf="@+id/personEmail"
+        app:layout_constraintStart_toStartOf="@+id/personEmail"
+        app:layout_constraintTop_toBottomOf="@+id/personEmail" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/Widget.AppCompat.Button"
+        android:id="@+id/btnEdit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/go_back_btn"
+        android:text="Edit Profile"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/personPassword"
+        app:layout_constraintStart_toStartOf="@+id/personPassword"
+        app:layout_constraintTop_toBottomOf="@+id/personPassword" />
+</androidx.constraintlayout.widget.ConstraintLayout>

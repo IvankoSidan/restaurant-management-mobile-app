@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Presentation.Fragments.GuestFragment.ProfileFragment"
+    android:background="@drawable/profile_back">
+
+    <ImageView
+        android:id="@+id/backImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_setting" />
+
+    <ImageView
+        android:id="@+id/settingOpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp" />
+
+    <ImageView
+        android:id="@+id/personImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/profile"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintContent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/profile_back_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingOpen">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutProfileData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/nameUsers"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:enabled="false"
+                android:paddingStart="15dp"
+                android:inputType="textPersonName"
+                android:drawableStart="@drawable/person_img"
+                android:textColor="@color/black"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:background="@drawable/profile_edit_profile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:elevation="8dp"/>
+
+            <TextView
+                android:id="@+id/emailUsers"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="32dp"
+                android:enabled="false"
+                android:paddingStart="15dp"
+                android:textColor="@color/black"
+                android:inputType="textEmailAddress"
+                android:drawableStart="@drawable/email_img"
+                android:gravity="center_vertical"
+                android:drawablePadding="5dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:background="@drawable/profile_edit_profile"
+                app:layout_constraintEnd_toEndOf="@+id/nameUsers"
+                app:layout_constraintStart_toStartOf="@+id/nameUsers"
+                app:layout_constraintTop_toBottomOf="@+id/nameUsers"
+                android:elevation="8dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/layoutProfileData"
+            app:layout_constraintStart_toStartOf="@+id/layoutProfileData"
+            app:layout_constraintTop_toBottomOf="@+id/layoutProfileData">
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:background="#696969"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/titleOrderHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Order History"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/view3"
+                app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+            <ImageView
+                android:id="@+id/btnOrderHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/titleOrderHistory"
+                app:layout_constraintEnd_toEndOf="@+id/view3"
+                app:layout_constraintTop_toTopOf="@+id/titleOrderHistory"
+                app:srcCompat="@drawable/arrow_forward" />
+
+
+            <TextView
+                android:id="@+id/titlePaymentDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Payment Details"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/titleOrderHistory"
+                app:layout_constraintTop_toBottomOf="@+id/titleOrderHistory" />
+
+            <ImageView
+                android:id="@+id/btnPaymentDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/titlePaymentDetails"
+                app:layout_constraintEnd_toEndOf="@+id/btnOrderHistory"
+                app:layout_constraintTop_toTopOf="@+id/titlePaymentDetails"
+                app:srcCompat="@drawable/arrow_forward" />
+
+
+            <TextView
+                android:id="@+id/titleFeaturesDishes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Features Dishes"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/titlePaymentDetails"
+                app:layout_constraintTop_toBottomOf="@+id/titlePaymentDetails" />
+
+            <ImageView
+                android:id="@+id/btnFeatures"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/titleFeaturesDishes"
+                app:layout_constraintEnd_toEndOf="@+id/btnPaymentDetails"
+                app:layout_constraintTop_toTopOf="@+id/titleFeaturesDishes"
+                app:srcCompat="@drawable/arrow_forward" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/layoutProfileData"
+            app:layout_constraintStart_toStartOf="@+id/layoutProfileData">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/editProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/go_back_btn"
+                android:drawableEnd="@drawable/edit"
+                android:gravity="center"
+                android:paddingRight="10dp"
+                android:text="Edit Profile"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/logOutSystem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_weight="1"
+                android:background="@drawable/go_back_btn"
+                android:drawableEnd="@drawable/logout"
+                android:gravity="center"
+                android:paddingRight="10dp"
+                android:text="Log out"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

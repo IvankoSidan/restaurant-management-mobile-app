@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">MyFirstApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="order_history">Order History</string>
+    <string-array name="user_roles">
+        <item>Guest</item>
+    </string-array>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+
+    <string-array name="spinner_rate_items">
+        <item>All</item>
+        <item>3.0 - 4.0</item>
+        <item>4.0 - 4.5</item>
+        <item>4.5 - 5.0</item>
+    </string-array>
+
+    <string-array name="spinner_time_items">
+        <item>All</item>
+        <item>0 - 10 min</item>
+        <item>10 - 30 min</item>
+        <item>more than 30 min</item>
+    </string-array>
+
+    <string-array name="spinner_price_items">
+        <item>All</item>
+        <item>1$ - 10$</item>
+        <item>10$ - 30$</item>
+        <item>more than 30$</item>
+    </string-array>
+</resources>

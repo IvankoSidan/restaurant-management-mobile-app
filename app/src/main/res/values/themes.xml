@@ -1,0 +1,66 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.MyFirstApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+    </style>
+
+    <style name="LoginTextInputOuterFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
+    <style name="LoginTextInputInnerFieldStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/black</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="errorToast">
+        <item name="stColorBackground">#F44336</item>
+        <item name="stIconStart">@drawable/error</item>
+    </style>
+
+    <style name="successToast">
+        <item name="stColorBackground">#9ACD32</item>
+        <item name="stIconStart">@drawable/success</item>
+    </style>
+
+    <style name="fab_3_rounded">
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="CustomFabStyle" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="borderWidth">0dp</item>
+        <item name="elevation">0dp</item>
+        <item name="backgroundTint">@color/teal_200</item>
+    </style>
+
+    <array name="drawable_ids">
+        <item>cat_1_back</item>
+        <item>cat_2_back</item>
+        <item>cat_3_back</item>
+        <item>cat_4_back</item>
+        <item>cat_5_back</item>
+        <item>cat_6_back</item>
+        <item>cat_7_back</item>
+        <item>cat_8_back</item>
+    </array>
+
+    <style name="Theme.AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/dialog_bg</item>
+    </style>
+</resources>
