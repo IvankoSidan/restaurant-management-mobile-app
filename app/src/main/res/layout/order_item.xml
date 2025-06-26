@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Order #1"
+            android:text="@string/order_1"
             android:textSize="@dimen/text_size_large"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Date: "
+            android:text="@string/date_info"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_medium"
             android:textStyle="bold"
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Status: "
+            android:text="@string/status_info"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_medium"
             android:textStyle="bold"
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Total: "
+            android:text="@string/total_info"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_medium"
             android:textStyle="bold"
@@ -106,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Dishes: "
+            android:text="@string/dishes_info"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_large"
             android:textStyle="bold"
@@ -117,7 +117,7 @@
             android:id="@+id/dishName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="- Pasta (1)"
             android:textColor="@color/black"
@@ -131,7 +131,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Order Management"
+            android:text="@string/order_management"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_large"
             android:textStyle="bold"
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Delete Order"
+                android:text="@string/delete_order_info"
                 android:textColor="#696969"
                 android:textSize="@dimen/text_size_small"
                 android:textStyle="bold|italic"
@@ -178,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Delete"
+                android:text="@string/delete"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_medium"
                 android:textStyle="bold"
@@ -209,11 +209,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/iconDeleteOrder" />
 
             <TextView
-                android:id="@+id/textRepeat"
+                android:id="@+id/payRepeat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Repeat the Order"
+                android:text="@string/payment_the_order_info"
                 android:textColor="#696969"
                 android:textSize="@dimen/text_size_small"
                 android:textStyle="bold|italic"
@@ -221,35 +221,35 @@
                 app:layout_constraintTop_toBottomOf="@+id/view" />
 
             <ImageView
-                android:id="@+id/repeatImg"
+                android:id="@+id/payImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/textRepeat"
-                app:layout_constraintTop_toBottomOf="@+id/textRepeat"
-                app:srcCompat="@drawable/ic_repeat" />
+                app:layout_constraintStart_toStartOf="@+id/payRepeat"
+                app:layout_constraintTop_toBottomOf="@+id/payRepeat"
+                app:srcCompat="@drawable/credit_card" />
 
             <TextView
-                android:id="@+id/titleRepeat"
+                android:id="@+id/payTitleRepeat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Repeat"
+                android:text="@string/to_pay"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_medium"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/repeatImg"
-                app:layout_constraintStart_toEndOf="@+id/repeatImg"
-                app:layout_constraintTop_toTopOf="@+id/repeatImg" />
+                app:layout_constraintBottom_toBottomOf="@+id/payImg"
+                app:layout_constraintStart_toEndOf="@+id/payImg"
+                app:layout_constraintTop_toTopOf="@+id/payImg" />
 
             <ImageView
-                android:id="@+id/repeatImageBtn"
+                android:id="@+id/payImageBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/titleRepeat"
+                app:layout_constraintBottom_toBottomOf="@+id/payTitleRepeat"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/titleRepeat"
+                app:layout_constraintTop_toTopOf="@+id/payTitleRepeat"
                 app:srcCompat="@drawable/arrow_forward" />
 
             <View
@@ -262,18 +262,18 @@
                 android:background="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/repeatImg" />
+                app:layout_constraintTop_toBottomOf="@+id/payImg" />
 
             <TextView
                 android:id="@+id/textChange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Change Order"
+                android:text="@string/change_order_info"
                 android:textColor="#696969"
                 android:textSize="@dimen/text_size_small"
                 android:textStyle="bold|italic"
-                app:layout_constraintStart_toStartOf="@+id/textRepeat"
+                app:layout_constraintStart_toStartOf="@+id/payRepeat"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
 
             <ImageView
@@ -290,7 +290,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Change"
+                android:text="@string/change_1"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_medium"
                 android:textStyle="bold"

@@ -1,0 +1,356 @@
+<resources>
+    <string name="app_name" translatable="false">MyFirstApp</string>
+    <string name="hello_blank_fragment">Привет, пустой фрагмент</string>
+    <string name="order_history">История заказов</string>
+    <string name="payment_method">Способы оплаты</string>
+    <string name="total">$0.0</string>
+    <string name="pay_now">Оплатить сейчас</string>
+    <string name="reserved">Занято</string>
+    <string name="available">Доступно</string>
+    <string name="selected">Выбрано</string>
+    <string name="reserve_table">Забронировать столик</string>
+    <string name="name">Имя</string>
+    <string name="date">Дата</string>
+    <string name="date_info">Дата:</string>
+    <string name="time">Время</string>
+    <string name="duration">Продолжительность</string>
+    <string name="guests">Количество гостей</string>
+    <string name="occasion">Повод</string>
+    <string name="table">Номер стола</string>
+    <string name="floor">Этаж</string>
+    <string name="cancel">Отмена</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="make_an_order_for_booking">Сделать заказ для бронирования !</string>
+    <string name="floor_image">Изображение этажа</string>
+    <string name="table_image">Изображение стола</string>
+    <string name="table_icon">Значок стола</string>
+    <string name="payment_methods">Способы оплаты</string>
+    <string name="booking_date">Дата бронирования:</string>
+    <string name="booking_status">Статус бронирования:</string>
+    <string name="reservation_code">Код бронирования:\n</string>
+    <string name="reserved_tables">Забронированные столы:</string>
+    <string name="guest_count">Количество гостей:</string>
+    <string name="cardholder_name">Имя держателя карты</string>
+    <string name="xxxx_xxxx_xxxx_xxxx">**** **** **** ****</string>
+    <string name="card_holder">Держатель карты</string>
+    <string name="your_holder_name">Ваше имя держателя</string>
+    <string name="_00_00">00/00</string>
+    <string name="cvv" translatable="false">CVV</string>
+    <string name="card_number">Номер карты</string>
+    <string name="booking_history">История бронирований</string>
+    <string name="book_a_table">Забронировать стол</string>
+    <string name="date_amp_time"><![CDATA[Дата и время]]></string>
+    <string name="_60_min">60 мин</string>
+    <string name="guest">Гость</string>
+    <string name="type_your_email">Введите ваш email</string>
+    <string name="type_your_name">Введите ваше имя</string>
+    <string name="type_your_password">Введите ваш пароль</string>
+    <string name="features_dishes">Избранные блюда</string>
+    <string name="edit_profile">Изменить профиль</string>
+    <string name="log_out">Выйти</string>
+    <string name="choose_a_language">Выберите язык</string>
+    <string name="choose_a_theme">Изменить тему</string>
+    <string name="order_1">Заказ #1</string>
+    <string name="status_info">Статус:</string>
+    <string name="total_info">Итого:</string>
+    <string name="dishes_info">Блюда:</string>
+    <string name="delete_order_info">Удалить заказ</string>
+    <string name="delete">Удалить</string>
+    <string name="payment_the_order_info">Оплатить заказ</string>
+    <string name="to_pay">К оплате</string>
+    <string name="change_order_info">Изменить заказ</string>
+    <string name="change">Подтвердить изменения</string>
+    <string name="change_1">Изменить</string>
+
+    <string name="credit_card">Кредитная карта</string>
+    <string name="success_info">Успех!</string>
+    <string name="your_payment_was_successful_a_receipt_for_this_purchase_has_been_sent_to_your_email">Ваш платеж был успешным. Чек на эту покупку был отправлен на ваш email.</string>
+    <string name="go_back">Вернуться назад</string>
+    <string name="sign_in">Войти</string>
+    <string name="no_current_order_to_update">Нет текущего заказа для обновления !</string>
+    <string name="already_registered_sign_in">Уже зарегистрированы ? Войдите !</string>
+    <string name="_0505">**** **** **** 0505</string>
+    <string name="remember_me">Запомнить меня</string>
+    <string name="sign_up">Зарегистрироваться</string>
+    <string name="enter_card_number">Введите номер карты</string>
+    <string name="expiration_date">СРОК ДЕЙСТВИЯ</string>
+    <string name="mm_yy">ММ/ГГ</string>
+    <string name="card_holder_s_name">ИМЯ ДЕРЖАТЕЛЯ КАРТЫ</string>
+    <string name="card_holder_name_1">Имя держателя карты</string>
+    <string name="confirm_payment">ПОДТВЕРДИТЬ ОПЛАТУ</string>
+    <string name="order_description">Описание заказа</string>
+    <string name="order_info">Заказ:</string>
+    <string name="date_and_time">Дата и время:</string>
+    <string name="total_price">Итоговая цена:</string>
+    <string name="save_card_details_for_future_payments">Сохранить данные карты \nдля будущих оплат</string>
+    <string name="search_order">Поиск заказа...</string>
+    <string name="hi">Привет</string>
+    <string name="order_amp_eat"><![CDATA[Заказать и поесть]]></string>
+    <string name="find_your_food">Найдите свою еду</string>
+    <string name="today_s_best_foods">Лучшие блюда сегодня</string>
+    <string name="view_all">Просмотреть все</string>
+    <string name="choose_category">Выберите категорию</string>
+    <string name="featured_dishes">Избранные блюда</string>
+    <string name="card_holder_name">Имя держателя карты</string>
+    <string name="add_card">Добавить карту</string>
+    <string name="successfully_n_reserved_your_table">Столик успешно забронирован !</string>
+    <string name="reserve_id">ID бронирования:</string>
+    <string name="rsv5232">RSV5232</string>
+    <string name="search_here">Искать здесь..</string>
+    <string name="order_summary">Сводка заказа</string>
+    <string name="my_cart">Моя корзина</string>
+    <string name="information">Информация</string>
+    <string name="total_1">Итого</string>
+    <string name="cash">Наличные</string>
+    <string name="cancel_the_order">Отменить заказ</string>
+    <string name="order_now">Заказать сейчас</string>
+    <string name="to_close">Закрыть</string>
+
+    <!-- Сообщения ViewModel для гостей -->
+    <string name="error_categories_not_found">Категории не найдены !</string>
+    <string name="error_dishes_not_found">Блюда не найдены!</string>
+    <string name="error_best_dishes_not_found">Лучшие блюда не найдены !</string>
+    <string name="error_dish_not_in_menu">Это блюдо отсутствует в меню !</string>
+    <string name="error_dishes_not_in_category">Эти блюда отсутствуют в категории !</string>
+    <string name="error_favorite_dishes_not_found">Избранные блюда не найдены !</string>
+    <string name="error_user_not_logged_in">Пользователь не вошел в систему</string>
+    <string name="error_failed_add_favorite">Не удалось добавить блюдо в избранное: %1$s</string>
+    <string name="error_failed_remove_favorite">Не удалось удалить блюдо из избранного: %1$s</string>
+    <string name="message_dish_already_favorite">Это блюдо уже в избранных !</string>
+    <string name="message_dish_added_favorite">Блюдо добавлено в избранные !</string>
+    <string name="remove_favorite">удалено из избранного!</string>
+    <string name="min">мин</string>
+    <string name="rating">Рейтинг</string>
+
+    <!-- Сообщения ViewModel для входа -->
+    <string name="error_empty_response">Пустое тело ответа</string>
+    <string name="error_missing_user_data">Отсутствуют данные пользователя</string>
+    <string name="error_missing_token">Отсутствует токен</string>
+    <string name="error_missing_user_id">Отсутствует ID пользователя</string>
+    <string name="error_missing_user_name">Отсутствует имя пользователя</string>
+    <string name="error_missing_user_email">Отсутствует email пользователя</string>
+    <string name="error_missing_user_role">Отсутствует роль пользователя</string>
+    <string name="error_login_failed">Ошибка входа: %1$s</string>
+    <string name="error_login_generic">Ошибка входа: %1$s</string>
+    <string name="error_registration_failed">Ошибка регистрации</string>
+    <string name="error_registration_generic">Ошибка регистрации: %1$s</string>
+    <string name="error_unknown">Неизвестная ошибка</string>
+
+    <!-- Сообщения ViewModel для заказа -->
+    <string name="error_dish_not_found">Блюдо не найдено</string>
+    <string name="error_failed_delete_payment">Не удалось удалить способ оплаты</string>
+    <string name="error_deleting_payment">Ошибка удаления способа оплаты: %1$s</string>
+
+    <!-- Сообщения ViewModel по оплате -->
+    <string name="error_payment_failed">Ошибка обработки платежа: %1$s</string>
+    <string name="error_card_creation_failed">Не удалось создать карту: %1$s</string>
+
+    <!-- Сообщения ViewModel для резервирования столов -->
+    <string name="error_table_update_failed">Не удалось обновить статус стола</string>
+    <string name="error_booking_creation_failed">Не удалось создать бронирование</string>
+    <string name="error_booking_update_failed">Не удалось обновить бронирование</string>
+    <string name="error_booking_deletion_failed">Не удалось удалить бронирование</string>
+    <string name="error_check_availability_failed">Не удалось проверить наличие столов</string>
+    <string name="error_field_empty">Поле не должно быть пустым!</string>
+    <string name="error_order_paid">Заказ #%1$d был оплачен и не может быть изменен !</string>
+    <string name="error_order_already_paid">Заказ #%1$d уже был оплачен !</string>
+    <string name="error_payment_methods_null">Методы оплаты отсутствуют !</string>
+    <string name="error_unknown_user">Неизвестный пользователь !</string>
+    <string name="error_booking_date">Выберите дату бронирования !</string>
+    <string name="error_booking_time_passed">Выбранное время уже прошло для сегодня !</string>
+    <string name="error_exceeds_capacity">Количество гостей (%1$d) превышает вместимость (%2$d) выбранного стола !</string>
+    <string name="success_reservation_canceled">Бронирование отменено !</string>
+    <string name="success_reservation_confirmed">Бронирование подтверждено !</string>
+    <string name="success_booking_updated">Бронирование обновлено !</string>
+    <string name="success_payment_confirmed">Оплата успешно подтверждена !</string>
+    <string name="error_order_deletion">Вы действительно хотите удалить этот заказ ?</string>
+    <string name="error_select_table">Выберите хотя бы один стол для бронирования !</string>
+    <string name="floor_info">Этаж</string>
+    <string name="select_sort_title">Выберите сортировку</string>
+    <string name="no_date">Нет даты</string>
+    <string name="no_time">Нет времени</string>
+    <string name="no_guests">0</string>
+    <string name="no_duration">0 часов</string>
+    <string name="not_selected">Не выбрано</string>
+    <string name="order_management">Управление заказами</string>
+    <string name="select_floor">Этаж:</string>
+    <string name="select_table_number">Стол:</string>
+    <string name="select_guests_count">Количество гостей:</string>
+    <string name="success_toast_duration_format">%1$s часов</string>
+    <string name="guests_count">%1$d</string>
+    <string name="cart_empty">Корзина пуста</string>
+    <string name="order_empty">Заказ пуст!</string>
+    <string name="dish_time">%d %s</string>
+    <string name="details">Подробности</string>
+    <string name="quantity">Количество</string>
+    <string name="dish_rating">%1$.2f %2$s</string>
+    <string name="amount_error">Сумма заказа не может быть меньше нуля !</string>
+    <string name="delete_favorite">удалено из избранного !</string>
+    <string name="booking_error">Бронирование невозможно, так как этот стол занят !</string>
+    <string name="list_all">Список всех блюд</string>
+    <string name="field_empty">Поле не должно быть пустым !</string>
+    <string name="hi_user">Привет, %1$s</string>
+    <string name="delete_order_confirmation">Вы уверены, что хотите удалить этот заказ ?</string>
+    <string name="order_paid_cannot_change">Заказ #%1$d был оплачен и не может быть изменен !</string>
+    <string name="order_delete_error">Заказ #%1$d был оплачен и находится в обработке !</string>
+    <string name="order_paid_repeat">Заказ #%1$d уже был оплачен!</string>
+    <string name="order_change_error">Заказ #%1$d не может быть изменен в текущем статусе.</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="error">Ошибка\n</string>
+    <string name="payment_method_null">Методы оплаты отсутствуют !</string>
+    <string name="total_price_1">Итоговая цена</string>
+    <string name="add_to_cart">В корзину</string>
+
+    <string name="payment_confirmation_success">Оплата успешно подтверждена !</string>
+    <string name="order_data_not_found">Данные заказа не найдены !</string>
+    <string name="fill_card_details">Пожалуйста, заполните все данные карты !</string>
+    <string name="invalid_card_number">Некорректный номер карты!</string>
+    <string name="invalid_expiration_date">Некорректная дата истечения срока действия! Пожалуйста, используйте формат ММ/ГГ.</string>
+    <string name="invalid_cvv">Некорректный CVV!</string>
+    <string name="invalid_card_holder_name">Некорректное имя держателя карты !</string>
+    <string name="go_back_button">Вернуться назад</string>
+    <string name="exit_popup_title">Оплата завершена!</string>
+    <string name="confirm_payment_1">Подтвердить оплату</string>
+
+    <string name="error_invalid_card_holder_name">Некорректное имя держателя карты. Допускаются только буквы.</string>
+    <string name="error_invalid_cvv">Некорректный CVV. Пожалуйста, введите 3 или 4 цифры.</string>
+    <string name="error_invalid_expiration_date">Некорректная дата истечения срока действия. Пожалуйста, используйте формат ММ/ГГ.</string>
+    <string name="error_invalid_card_number">Некорректный номер карты. Пожалуйста, введите 16 цифр.</string>
+    <string name="reservation_canceled">Бронирование отменено !</string>
+    <string name="select_booking_date">Выберите дату бронирования !</string>
+    <string name="chosen_time_passed">Выбранное время уже прошло !</string>
+    <string name="no_tables_selected">Нет выбранных столов !</string>
+    <string name="guest_count_exceeds_capacity">Количество гостей (%d) превышает вместимость (%d) выбранного стола !</string>
+    <string name="unknown_user">Неизвестный пользователь !</string>
+    <string name="reservation_confirmed">Бронирование подтверждено !</string>
+    <string name="no_table_selected">Стол не выбран !</string>
+    <string name="booking_updated">Бронирование обновлено !</string>
+    <string name="booking_time_past">Время бронирования прошло !</string>
+    <string name="unknown_error">Произошла неизвестная ошибка.</string>
+
+    <string name="table_unavailable">Столик %s недоступен !</string>
+    <string name="failed_to_update_table_status">Не удалось обновить статус стола %s.</string>
+    <string name="failed_to_create_booking">Не удалось создать бронирование для стола %s.</string>
+    <string name="duration_text">%1$d мин</string>
+
+    <string name="currency_sign">$</string>
+    <string name="minutes">мин</string>
+    <string name="order_number">Заказ #%d</string>
+    <string name="delete_payment_method_confirmation">Вы действительно хотите удалить способ оплаты ?</string>
+
+    <string name="price_format">%.2f $</string>
+    <string name="time_format">%d %s</string>
+
+    <string-array name="user_roles">
+        <item>Гость</item>
+    </string-array>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+
+    <string name="sun">Вс</string>
+    <string name="mon">Пн</string>
+    <string name="tue">Вт</string>
+    <string name="wed">Ср</string>
+    <string name="thu">Чт</string>
+    <string name="fri">Пт</string>
+    <string name="sat">Сб</string>
+
+    <string name="login_failed">Не удалось войти в систему!</string>
+
+    <string name="invalid_email">Неверный email: %1$s</string>
+    <string name="invalid_name">Неверное имя: %1$s</string>
+    <string name="invalid_password">Неверный пароль: %1$s</string>
+    <string name="registration_successful">Регистрация успешна!</string>
+    <string name="registration_failed">Ошибка регистрации!</string>
+    <string name="unexpected_error">Произошла непредвиденная ошибка.</string>
+    <string name="email_validation_error">Ошибка валидации email: %1$s</string>
+    <string name="password_validation_error">Ошибка валидации пароля: %1$s</string>
+    <string name="login_successful">Вход успешен!</string>
+    <string name="login_error">Ошибка входа: %1$s</string>
+    <string name="invalid_duration">Недопустимое значение</string>
+
+
+    <string-array name="spinner_rate_items">
+        <item>Все</item>
+        <item>3.0 - 4.0</item>
+        <item>4.0 - 4.5</item>
+        <item>4.5 - 5.0</item>
+    </string-array>
+
+    <string-array name="spinner_time_items">
+        <item>Все</item>
+        <item>0 - 10 мин</item>
+        <item>10 - 30 мин</item>
+        <item>более 30 мин</item>
+    </string-array>
+
+    <string-array name="floor_titles">
+        <item>1-й этаж</item>
+        <item>2-й этаж</item>
+        <item>3-й этаж</item>
+    </string-array>
+
+    <string-array name="spinner_price_items">
+        <item>Все</item>
+        <item>1$ - 10$</item>
+        <item>10$ - 30$</item>
+        <item>более 30$</item>
+    </string-array>
+
+    <string-array name="sort_options">
+        <item>Сортировать по дате</item>
+        <item>Сортировать по количеству гостей</item>
+        <item>Сортировать по статусу</item>
+    </string-array>
+
+    <array name="background_resources">
+        <item>@drawable/cat_1_back</item>
+        <item>@drawable/cat_2_back</item>
+        <item>@drawable/cat_3_back</item>
+        <item>@drawable/cat_4_back</item>
+        <item>@drawable/cat_5_back</item>
+        <item>@drawable/cat_6_back</item>
+        <item>@drawable/cat_7_back</item>
+        <item>@drawable/cat_8_back</item>
+    </array>
+
+    <string name="select_month">Выберите месяц</string>
+    <string-array name="months_array">
+        <item>январь</item>
+        <item>февраль</item>
+        <item>март</item>
+        <item>апрель</item>
+        <item>май</item>
+        <item>июнь</item>
+        <item>июль</item>
+        <item>август</item>
+        <item>сентябрь</item>
+        <item>октябрь</item>
+        <item>ноябрь</item>
+        <item>декабрь</item>
+    </string-array>
+
+    <plurals name="hours">
+        <item quantity="one">%d час</item>
+        <item quantity="few">%d часа</item>
+        <item quantity="many">%d часов</item>
+        <item quantity="other">%d часов</item>
+    </plurals>
+
+    <plurals name="minutes">
+        <item quantity="one">%d минута</item>
+        <item quantity="few">%d минуты</item>
+        <item quantity="many">%d минут</item>
+        <item quantity="other">%d минут</item>
+    </plurals>
+
+
+    <string name="minute">минут</string>
+    <string name="error_removing_favorite">Было удалено из избранного !</string>
+    <string name="already_removed">Блюдо уже было удалено из избранного !</string>
+
+    <string name="new_order_confirm_title">Новый заказ</string>
+    <string name="new_order_confirm_message">У вас уже есть заказ в процессе. Создание нового заказа очистит текущий. Продолжить ?</string>
+</resources>

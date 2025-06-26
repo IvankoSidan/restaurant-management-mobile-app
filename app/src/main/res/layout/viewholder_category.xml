@@ -21,14 +21,14 @@
             android:layout_gravity="center"
             android:padding="12dp"
             android:background="@drawable/cat_1_back"
-            app:srcCompat="@drawable/btn_1" />
+            app:srcCompat="@drawable/default_background" />
 
         <TextView
             android:id="@+id/textTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Title"
+            android:text=""
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18sp" />

@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.ViewModelProvider
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,30 +17,25 @@ import com.example.myfirstapp.Presentation.Fragments.LoginRegisterFragments.Entr
 import com.example.myfirstapp.R
 import com.example.myfirstapp.ViewModels.GuestViewModel
 import com.example.myfirstapp.ViewModels.OrderViewModel
+import com.example.myfirstapp.data.Enums.OrderStatus
 import com.example.myfirstapp.data.Models.DishOrder
 import com.example.myfirstapp.data.Models.Order
 import com.example.myfirstapp.databinding.FragmentOrderHistoryBinding
+import io.github.muddz.styleabletoast.StyleableToast
 import kotlinx.coroutines.launch
 
 
 class OrderHistoryFragment : Fragment(), OrderManagementListener {
 
-    private lateinit var binding: FragmentOrderHistoryBinding
+    private var _binding: FragmentOrderHistoryBinding? = null
+    private val binding get() = _binding!!
     private lateinit var orderAdapter: OrderAdapter
 
-    private val guestViewModel: GuestViewModel by lazy {
-        ViewModelProvider(requireActivity())[GuestViewModel::class.java]
-    }
+    private val guestViewModel: GuestViewModel by viewModel(ownerProducer = { requireActivity() })
+    private val orderViewModel: OrderViewModel by viewModel(ownerProducer = { requireActivity() })
 
-    private val orderViewModel: OrderViewModel by lazy {
-        ViewModelProvider(requireActivity())[OrderViewModel::class.java]
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentOrderHistoryBinding.inflate(inflater, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentOrderHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -62,12 +57,12 @@ class OrderHistoryFragment : Fragment(), OrderManagementListener {
 
     private fun setupClickListeners() {
         binding.btnLogOut.setOnClickListener { navigateTo(EntryFragment()) }
-        binding.backToImage.setOnClickListener { navigateTo(R.id.profileFragment) }
+        binding.backToImage.setOnClickListener { findNavController().popBackStack() }
     }
 
     private fun navigateTo(fragment: Fragment) {
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
+            .replace(R.id.main_nav_host_fragment, fragment)
             .commit()
     }
 
@@ -75,74 +70,98 @@ class OrderHistoryFragment : Fragment(), OrderManagementListener {
         findNavController().navigate(destinationId)
     }
 
-    private fun observeOrders() {
-        orderViewModel._orders.observe(viewLifecycleOwner) { orders ->
-            orderAdapter.submitList(orders)
-        }
-
-        orderViewModel._formattedDishes.observe(viewLifecycleOwner) { formattedDishesMap ->
-            orderAdapter.updateFormattedDishes(formattedDishesMap)
+    private fun loadOrders() {
+        guestViewModel.guest.observe(viewLifecycleOwner) { user ->
+            user?.let { orderViewModel.loadOrders(it.idUser) }
         }
     }
 
-    private fun loadOrders() {
-        guestViewModel.guest.observe(viewLifecycleOwner) { user ->
-            user?.let { orderViewModel.loadOrders(it.id) }
+    private fun observeOrders() {
+        orderViewModel.orders.observe(viewLifecycleOwner) { orders ->
+            orderAdapter.submitList(orders.sortedBy { it.orderId })
+            orders.forEach { order ->
+                orderViewModel.loadFormattedDishes(order.orderId)
+            }
+        }
+        orderViewModel.formattedDishes.observe(viewLifecycleOwner) { map ->
+            orderAdapter.updateFormattedDishes(map)
         }
     }
 
     override fun onDeleteOrder(order: Order) {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Delete Order")
-            .setMessage("Are you sure you want to delete this order?")
-            .setPositiveButton("Yes") { _, _ -> orderViewModel.deleteOrder(order) }
-            .setNegativeButton("No", null)
-            .show()
+        if (order.status == OrderStatus.PAID || order.status == OrderStatus.ACCEPTED) {
+            StyleableToast.makeText(requireContext(),
+                getString(R.string.order_delete_error, order.orderId),
+                R.style.errorToast).show()
+        } else {
+            AlertDialog.Builder(requireContext())
+                .setTitle(getString(R.string.delete_order_confirmation))
+                .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                    orderViewModel.deleteOrder(order)
+                }
+                .setNegativeButton(getString(R.string.no), null)
+                .show()
+        }
     }
 
     override fun onChangeOrder(order: Order) {
-        handleOrderChange(order)
+        if (order.status == OrderStatus.PAID || order.status == OrderStatus.ACCEPTED) {
+            StyleableToast.makeText(requireContext(),
+                getString(R.string.order_paid_cannot_change, order.orderId),
+                R.style.errorToast).show()
+        } else {
+            handleOrderChange(order)
+        }
     }
 
     override fun onRepeatOrder(order: Order) {
-        handleOrderChange(order)
+        if (order.status != OrderStatus.IN_PROGRESS) {
+            StyleableToast.makeText(requireContext(),
+                getString(R.string.order_paid_repeat, order.orderId),
+                R.style.errorToast).show()
+        } else {
+            handleRepeatOrder(order)
+        }
     }
 
     private fun handleOrderChange(order: Order) {
         viewLifecycleOwner.lifecycleScope.launch {
-            orderViewModel.getDishesByOrderId(order.orderId)
+            orderViewModel.clearLastOrder()
+            val dishOrders = orderViewModel.fetchDishOrders(order.orderId)
             orderViewModel.setCurrentOrder(order)
-
-            orderViewModel._dishOrders.observe(viewLifecycleOwner) { dishOrders ->
-                handleDishOrders(dishOrders)
-            }
+            updateGuestCart(dishOrders)
+            orderViewModel.loadOrders(order.userId)
         }
     }
 
-    private fun handleDishOrders(dishOrders: List<DishOrder>) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            val dishes = dishOrders.map { dishOrder ->
-                orderViewModel.getDishById(dishOrder.dishId).apply {
-                    quantity = dishOrder.quantity
-                }
-            }
+    private suspend fun updateGuestCart(dishOrders: List<DishOrder>) {
+        guestViewModel.clearCart()
+        val ids = dishOrders.map { it.dishId }
+        val dishes = orderViewModel.getDishesByIds(ids)
+        dishes.forEach { dish ->
+            val qty = dishOrders.first { it.dishId == dish.idDish }.quantity
+            dish.quantity = qty
+            guestViewModel.addToCart(dish, qty)
+        }
+        navigateTo(R.id.cartFragment)
+    }
 
-            guestViewModel.clearCart()
-            dishes.forEach { dish -> guestViewModel.addToCart(dish, dish.quantity) }
-            navigateTo(R.id.cartFragment)
+    private fun handleRepeatOrder(order: Order) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            orderViewModel.setCurrentOrder(order)
+            navigateTo(R.id.paymentFragment)
         }
     }
 
     override fun getFormattedDishesForOrder(orderId: Long, callback: (String) -> Unit) {
-        orderViewModel._formattedDishes.observe(viewLifecycleOwner) { formattedDishesMap ->
-            callback(formattedDishesMap[orderId] ?: "")
+        orderViewModel.formattedDishes.observe(viewLifecycleOwner) { map ->
+            callback(map[orderId] ?: "")
         }
     }
 
     private fun setupSearchView() {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean = false
-
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?) = false
             override fun onQueryTextChange(newText: String?): Boolean {
                 filterOrders(newText)
                 return true
@@ -151,19 +170,23 @@ class OrderHistoryFragment : Fragment(), OrderManagementListener {
     }
 
     private fun filterOrders(query: String?) {
-        val filteredOrders = orderViewModel._orders.value?.filter { order ->
+        val filtered = orderViewModel.orders.value?.filter { order ->
             query.isNullOrEmpty() || order.matchesQuery(query)
         } ?: emptyList()
-
-        orderAdapter.submitList(filteredOrders)
+        orderAdapter.submitList(filtered)
     }
 
-    private fun Order.matchesQuery(query: String): Boolean {
-        val lowerCaseQuery = query.lowercase()
-        return orderId.toString().contains(lowerCaseQuery) ||
-                orderDate.contains(lowerCaseQuery) ||
-                status.getDisplayName().lowercase().contains(lowerCaseQuery) ||
-                totalAmount.toString().contains(lowerCaseQuery) ||
-                orderAdapter.getFormattedDishes(orderId)?.lowercase()?.contains(lowerCaseQuery) == true
+    private fun Order.matchesQuery(q: String): Boolean {
+        val lq = q.lowercase()
+        return orderId.toString().contains(lq)
+                || orderDate.contains(lq)
+                || status.getDisplayName().lowercase().contains(lq)
+                || totalAmount.toString().contains(lq)
+                || orderAdapter.getFormattedDishes(orderId)?.lowercase()?.contains(lq) == true
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

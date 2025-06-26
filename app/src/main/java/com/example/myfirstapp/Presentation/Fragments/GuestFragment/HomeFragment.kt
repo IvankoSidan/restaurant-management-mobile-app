@@ -1,11 +1,12 @@
 package com.example.myfirstapp.Presentation.Fragments.GuestFragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,6 +19,7 @@ import com.example.myfirstapp.ViewModels.GuestViewModel
 import com.example.myfirstapp.data.Models.Dish
 import com.example.myfirstapp.databinding.FragmentHomeBinding
 import io.github.muddz.styleabletoast.StyleableToast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), DishCategoryListener {
 
@@ -25,9 +27,7 @@ class HomeFragment : Fragment(), DishCategoryListener {
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var bestFoodAdapter: BestFoodAdapter
 
-    private val guestViewModel: GuestViewModel by lazy {
-        ViewModelProvider(requireActivity())[GuestViewModel::class.java]
-    }
+    private val guestViewModel: GuestViewModel by viewModel(ownerProducer  = { requireActivity() })
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -36,7 +36,6 @@ class HomeFragment : Fragment(), DishCategoryListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupAdapters()
         setupRecyclerViews()
         setupClickListeners()
@@ -65,6 +64,8 @@ class HomeFragment : Fragment(), DishCategoryListener {
 
     private fun setupClickListeners() {
         binding.viewAllMeal.setOnClickListener {
+            guestViewModel.clearDishesByCategory()
+            guestViewModel.clearSearchResults()
             guestViewModel.loadAllDishes()
             findNavController().navigate(R.id.foodListFragment)
         }
@@ -80,18 +81,20 @@ class HomeFragment : Fragment(), DishCategoryListener {
                 findNavController().navigate(R.id.foodListFragment)
                 binding.editSearchFood.text.clear()
             } else {
-                StyleableToast.makeText(requireContext(), "The field should not be empty!", R.style.errorToast).show()
+                StyleableToast.makeText(requireContext(), getString(R.string.field_empty), R.style.errorToast).show()
             }
         }
     }
 
     private fun observeViewModel() {
         guestViewModel.guest.observe(viewLifecycleOwner) { user ->
-            binding.textName.text = "Hi, ${user.name}"
+            binding.textName.text = getString(R.string.hi_user, user!!.name)
         }
 
         guestViewModel.categories.observe(viewLifecycleOwner) { categories ->
-            categories?.let { categoryAdapter.submitList(it) }
+            categories?.let {
+                categoryAdapter.submitList(it)
+            }
         }
 
         guestViewModel.bestDishes.observe(viewLifecycleOwner) { bestDishes ->
@@ -102,6 +105,7 @@ class HomeFragment : Fragment(), DishCategoryListener {
     }
 
     override fun loadDishesByCategory(nameCategory: String) {
+        guestViewModel.clearSearchResults()
         guestViewModel.loadDishesByCategory(nameCategory)
         findNavController().navigate(R.id.foodListFragment)
     }

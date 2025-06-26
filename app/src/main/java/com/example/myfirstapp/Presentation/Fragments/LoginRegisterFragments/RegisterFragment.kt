@@ -5,24 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.myfirstapp.Objects.Validator
+import com.example.myfirstapp.Presentation.Activities.MainActivity
 import com.example.myfirstapp.R
 import com.example.myfirstapp.SealedClasses.RegistrationResult
-import com.example.myfirstapp.ViewModels.GuestViewModel
+import com.example.myfirstapp.SealedClasses.ValidationResult
 import com.example.myfirstapp.ViewModels.LoginViewModel
-import com.example.myfirstapp.data.Enums.UserRole
 import com.example.myfirstapp.databinding.FragmentRegisterBinding
-import com.google.android.material.snackbar.Snackbar
 import io.github.muddz.styleabletoast.StyleableToast
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
 
-    private val loginViewModel: LoginViewModel by lazy {
-        ViewModelProvider(requireActivity())[LoginViewModel::class.java]
-    }
+    private val loginViewModel: LoginViewModel by viewModel(ownerProducer  = { requireActivity() })
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
@@ -36,42 +35,69 @@ class RegisterFragment : Fragment() {
             val email = binding.emailEt.text.toString().trim()
             val name = binding.nameEt.text.toString().trim()
             val password = binding.passwordEt.text.toString().trim()
+            val rememberMe = binding.rememberMeCheckBox.isChecked
 
-            if (email.isNotEmpty() && name.isNotEmpty() && password.isNotEmpty()) {
-                loginViewModel.registration(email, name, password)
-            } else {
-                showErrorToast("Empty fields are not allowed !")
+            when (validateInputs(email, name, password)) {
+                is ValidationResult.Success -> {
+                    loginViewModel.registration(email, name, password, rememberMe)
+                }
+                else -> {}
             }
         }
 
         observeRegistrationResult()
 
         binding.textView.setOnClickListener {
-            navigateToEntryFragment()
+            findNavController().navigate(R.id.entryFragment)
         }
+    }
+
+    private fun validateInputs(email: String, name: String, password: String): ValidationResult {
+        Validator.validateEmail(email).let { result ->
+            if (result is ValidationResult.Error) {
+                showErrorToast(getString(R.string.invalid_email, result.message))
+                return result
+            }
+        }
+
+        Validator.validateName(name).let { result ->
+            if (result is ValidationResult.Error) {
+                showErrorToast(getString(R.string.invalid_name, result.message))
+                return result
+            }
+        }
+
+        Validator.validatePassword(password).let { result ->
+            if (result is ValidationResult.Error) {
+                showErrorToast(getString(R.string.invalid_password, result.message))
+                return result
+            }
+        }
+
+        return ValidationResult.Success
     }
 
     private fun observeRegistrationResult() {
         loginViewModel.registrationResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is RegistrationResult.Success -> {
-                    navigateToEntryFragment()
-                    showSuccessToast("Registration successful !")
+                    (requireActivity() as MainActivity).getNavController().navigate(R.id.homeFragment)
+                    showSuccessToast(getString(R.string.registration_successful))
                 }
-                is RegistrationResult.Failure -> showErrorToast(result.message ?: "Registration failed!")
-                null -> showErrorToast("Unexpected error occurred.")
+                is RegistrationResult.Failure -> {
+                    val errorMessage = result.message ?: getString(R.string.registration_failed)
+                    showErrorToast(errorMessage)
+                }
+                is RegistrationResult.Idle, is RegistrationResult.Loading -> {
+                    // Не показываем ошибок
+                }
+                else -> showErrorToast(getString(R.string.unexpected_error))
             }
         }
     }
 
-    private fun navigateToEntryFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, EntryFragment())
-            .commit()
-    }
-
     private fun showErrorToast(message: String) {
-        StyleableToast.makeText(requireContext(), message, Snackbar.LENGTH_SHORT, R.style.errorToast).show()
+        StyleableToast.makeText(requireContext(), message, Toast.LENGTH_SHORT, R.style.errorToast).show()
     }
 
     private fun showSuccessToast(message: String) {

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Presentation.Fragments.GuestFragment.CartFragment"
-    android:background="#D3D3D3">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/backToImage"
@@ -23,7 +23,7 @@
         android:id="@+id/titleCart"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="My Cart"
+        android:text="@string/my_cart"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:textAlignment="center"
@@ -59,7 +59,7 @@
                 android:id="@+id/titleOrderSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Order Summary"
+                android:text="@string/order_summary"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -74,7 +74,7 @@
                     android:id="@+id/totalTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Total"
+                    android:text="@string/total_1"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -87,7 +87,7 @@
                     android:id="@+id/textTotalPrice"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="49.5$"
+                    android:text="@string/total"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Information"
+                android:text="@string/information"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="Payment Method"
+                    android:text="@string/payment_method"
                     android:textColor="#696969"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +131,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Cash"
+                    android:text="@string/cash"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -173,14 +173,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Cancel the Order"
+                    android:text="@string/cancel_the_order"
                     android:textColor="#696969"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/textPaymentMethod"
                     app:layout_constraintTop_toBottomOf="@+id/view" />
 
                 <ImageView
-                    android:id="@+id/repeatImg"
+                    android:id="@+id/payImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -189,26 +189,26 @@
                     app:srcCompat="@drawable/cancel_img" />
 
                 <TextView
-                    android:id="@+id/titleRepeat"
+                    android:id="@+id/payTitleRepeat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Cancel"
+                    android:text="@string/cancel"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/repeatImg"
-                    app:layout_constraintStart_toEndOf="@+id/repeatImg"
-                    app:layout_constraintTop_toTopOf="@+id/repeatImg" />
+                    app:layout_constraintBottom_toBottomOf="@+id/payImg"
+                    app:layout_constraintStart_toEndOf="@+id/payImg"
+                    app:layout_constraintTop_toTopOf="@+id/payImg" />
 
                 <ImageView
                     android:id="@+id/cancelImageBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/titleRepeat"
+                    app:layout_constraintBottom_toBottomOf="@+id/payTitleRepeat"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/titleRepeat"
+                    app:layout_constraintTop_toTopOf="@+id/payTitleRepeat"
                     app:srcCompat="@drawable/arrow_forward" />
 
                 <View
@@ -219,72 +219,18 @@
                     android:background="#696969"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/repeatImg" />
-
-                <TextView
-                    android:id="@+id/textChange"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Continue Shopping"
-                    android:textColor="#696969"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textCancel"
-                    app:layout_constraintTop_toBottomOf="@+id/view2" />
-
-                <ImageView
-                    android:id="@+id/changeImg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="@+id/textChange"
-                    app:layout_constraintTop_toBottomOf="@+id/textChange"
-                    app:srcCompat="@drawable/continue_img" />
-
-                <TextView
-                    android:id="@+id/titleChange"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Resume"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/changeImg"
-                    app:layout_constraintStart_toEndOf="@+id/changeImg"
-                    app:layout_constraintTop_toTopOf="@+id/changeImg" />
-
-                <ImageView
-                    android:id="@+id/resumeImageBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/titleChange"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/titleChange"
-                    app:srcCompat="@drawable/arrow_forward" />
-
-
-                <View
-                    android:id="@+id/view3"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:background="#696969"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/changeImg" />
-
+                    app:layout_constraintTop_toBottomOf="@+id/payImg" />
 
                 <TextView
                     android:id="@+id/textChangeOrder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Change Order"
+                    android:text="@string/change_order_info"
                     android:textColor="#696969"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/textCancel"
-                    app:layout_constraintTop_toBottomOf="@+id/view3" />
+                    app:layout_constraintTop_toBottomOf="@+id/view2" />
 
                 <ImageView
                     android:id="@+id/changeOrderImg"
@@ -300,7 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Change"
+                    android:text="@string/change"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -324,7 +270,7 @@
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Order Now"
+                android:text="@string/order_now"
                 android:textColor="@color/black"
                 android:background="@drawable/go_back_btn"
                 android:layout_marginTop="16dp"

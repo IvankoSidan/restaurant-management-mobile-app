@@ -26,10 +26,9 @@ class FoodListAdapter(private val listener: DishSelectedListener) : ListAdapter<
 
         fun bind(dish: Dish) {
             titleFoodItem.text = dish.title
-            priceFood.text = String.format("%.2f $", dish.price)
-            timeCookingFood.text = "${dish.timeValue} min"
+            priceFood.text = String.format("%.2f %s", dish.price, itemView.context.getString(R.string.currency_sign))
+            timeCookingFood.text = String.format("%d %s", dish.timeValue, itemView.context.getString(R.string.minutes))
             starFoodImage.text = dish.star.toString()
-            Log.d("BindDish", "Binding dish: ${dish.title}, star: ${dish.star}")
 
             Glide.with(itemView.context)
                 .load(dish.imagePath)

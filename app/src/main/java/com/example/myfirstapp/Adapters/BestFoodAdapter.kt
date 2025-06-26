@@ -1,12 +1,10 @@
 package com.example.myfirstapp.Adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -21,21 +19,21 @@ class BestFoodAdapter(private val listener: DishCategoryListener) : ListAdapter<
     class BestFoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleTxt: TextView = itemView.findViewById(R.id.titleTxt)
         private val priceMeal: TextView = itemView.findViewById(R.id.priceMeal)
-        private val timeCooking: TextView = itemView.findViewById(R.id.timeCooking)
         private val starTitle: TextView = itemView.findViewById(R.id.starTitle)
         private val dishImage: ImageView = itemView.findViewById(R.id.imageMeal)
 
         fun bind(dish: Dish) {
+            val context = itemView.context
             titleTxt.text = dish.title
-            priceMeal.text = String.format("%.2f $", dish.price)
-            timeCooking.text = "${dish.timeValue} min"
+            priceMeal.text = context.getString(R.string.price_format, dish.price)
             starTitle.text = dish.star.toString()
 
-            Glide.with(itemView.context)
+            Glide.with(context)
                 .load(dish.imagePath)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(dishImage)
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BestFoodViewHolder {
@@ -46,6 +44,9 @@ class BestFoodAdapter(private val listener: DishCategoryListener) : ListAdapter<
     override fun onBindViewHolder(holder: BestFoodViewHolder, position: Int) {
         val dish = getItem(position)
         holder.bind(dish)
+        val context = holder.itemView.context
+        holder.itemView.findViewById<TextView>(R.id.timeCooking).text =
+            context.getString(R.string.time_format, dish.timeValue, context.getString(R.string.min))
         holder.itemView.findViewById<TextView>(R.id.detailBtn).setOnClickListener {
             listener.loadSelectedDish(dish)
         }

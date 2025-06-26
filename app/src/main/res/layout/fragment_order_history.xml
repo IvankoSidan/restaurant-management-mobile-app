@@ -26,7 +26,6 @@
             android:id="@+id/titleOrderHistory"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:text="@string/order_history"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -34,7 +33,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/backToImage"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/backToImage" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,7 +65,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:queryHint="Search Order..." />
+                app:queryHint="@string/search_order" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView

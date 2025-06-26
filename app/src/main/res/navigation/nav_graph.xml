@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/cartFragment">
-
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.myfirstapp.Presentation.Fragments.GuestFragment.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.myfirstapp.Presentation.Fragments.GuestFragment.HomeFragment"
@@ -48,4 +48,37 @@
         android:id="@+id/favoriteFragment"
         android:name="com.example.myfirstapp.Presentation.Fragments.GuestFragment.FavoriteFragment"
         android:label="FavoriteFragment" />
+    <fragment
+        android:id="@+id/bookSuccessFragment"
+        android:name="com.example.myfirstapp.Presentation.Fragments.GuestFragment.BookSuccessFragment"
+        android:label="fragment_book_sucess" />
+    <fragment
+        android:id="@+id/bookingTableFragment"
+        android:name="com.example.myfirstapp.Presentation.Fragments.GuestFragment.BookingTableFragment"
+        android:label="fragment_booking_table"
+        tools:layout="@layout/fragment_booking_table" />
+    <fragment
+        android:id="@+id/tableReservationFragment"
+        android:name="com.example.myfirstapp.Presentation.Fragments.GuestFragment.TableReservationFragment"
+        android:label="fragment_table_reservation"
+        tools:layout="@layout/fragment_table_reservation" />
+    <fragment
+        android:id="@+id/bookingHistoryFragment"
+        android:name="com.example.myfirstapp.Presentation.Fragments.GuestFragment.BookingHistoryFragment"
+        android:label="fragment_booking_history"
+        tools:layout="@layout/fragment_booking_history" />
+    <dialog
+        android:id="@+id/addCardFragment"
+        android:name="com.example.myfirstapp.Presentation.Fragments.GuestFragment.AddCardFragment"
+        android:label="AddCardFragment" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.myfirstapp.Presentation.Fragments.LoginRegisterFragments.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/entryFragment"
+        android:name="com.example.myfirstapp.Presentation.Fragments.LoginRegisterFragments.EntryFragment"
+        android:label="fragment_entry"
+        tools:layout="@layout/fragment_entry" />
 </navigation>

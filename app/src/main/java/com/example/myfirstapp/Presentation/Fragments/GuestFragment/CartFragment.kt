@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,153 +14,156 @@ import com.example.myfirstapp.Interfaces.ManagementCartListener
 import com.example.myfirstapp.R
 import com.example.myfirstapp.ViewModels.GuestViewModel
 import com.example.myfirstapp.ViewModels.OrderViewModel
+import com.example.myfirstapp.ViewModels.ReservationTableViewModel
 import com.example.myfirstapp.data.Enums.OrderStatus
 import com.example.myfirstapp.data.Models.Dish
 import com.example.myfirstapp.data.Models.DishOrder
 import com.example.myfirstapp.data.Models.Order
 import com.example.myfirstapp.databinding.FragmentCartBinding
+import io.github.muddz.styleabletoast.StyleableToast
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 class CartFragment : Fragment(), ManagementCartListener, CartManagerListener {
-    private lateinit var binding: FragmentCartBinding
+
+    private var _binding: FragmentCartBinding? = null
+    private val binding get() = _binding!!
     private lateinit var cartAdapter: CartAdapter
 
-    private val guestViewModel: GuestViewModel by lazy {
-        ViewModelProvider(requireActivity())[GuestViewModel::class.java]
-    }
-
-    private val orderViewModel: OrderViewModel by lazy {
-        ViewModelProvider(requireActivity())[OrderViewModel::class.java]
-    }
+    private val guestViewModel: GuestViewModel by viewModel(ownerProducer = { requireActivity() })
+    private val orderViewModel: OrderViewModel by viewModel(ownerProducer = { requireActivity() })
+    private val reserveViewModel: ReservationTableViewModel by viewModel(ownerProducer = { requireActivity() })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCartBinding.inflate(inflater, container, false)
+        _binding = FragmentCartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Настройка RecyclerView
         cartAdapter = CartAdapter(this)
-        orderViewModel.setCartListener(this)
-
-        setupRecyclerView()
-        setupClickListeners()
-        observeViewModel()
-    }
-
-    private fun setupRecyclerView() {
         binding.cardView.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(context)
             adapter = cartAdapter
         }
-    }
 
-    private fun observeViewModel() {
-        guestViewModel.selectedDishes.observe(viewLifecycleOwner, { dishes ->
-            cartAdapter.submitList(dishes)
+        // Подписка на изменения корзины
+        guestViewModel.selectedDishes.observe(viewLifecycleOwner) { dishes ->
+            cartAdapter.submitList(dishes.toList())
             updateTotalFee()
-        })
-    }
+        }
 
-    private fun updateTotalFee() {
-        val totalFee = guestViewModel.getTotalFee()
-        binding.textTotalPrice.text = String.format("%.2f $", totalFee)
-    }
+        // Кнопки
+        binding.placeOrderButton.setOnClickListener { submitOrder(navigateToPayment = false) }
+        binding.openPaymentMethod.setOnClickListener { submitOrder(navigateToPayment = true) }
+        binding.cancelImageBtn.setOnClickListener {
+            guestViewModel.clearCart()
+            orderViewModel.clearLastOrder()
+            findNavController().navigate(R.id.homeFragment)
+        }
 
-
-    private fun setupClickListeners() {
         binding.backToImage.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
         }
+    }
 
-        binding.placeOrderButton.setOnClickListener {
-            val currentUser = guestViewModel.guest.value
-            currentUser?.let { user ->
-                val selectedDishes = guestViewModel.selectedDishes.value ?: emptyList()
-                if (selectedDishes.isEmpty()) {
-                    Toast.makeText(requireContext(), "Cart is empty", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
+    private fun updateTotalFee() {
+        val total = guestViewModel.getTotalFee()
+        binding.textTotalPrice.text = "%.2f $".format(total)
+    }
 
-                val order = Order(
-                    userId = user.id,
-                    bookingId = null,
-                    totalAmount = guestViewModel.getTotalFee(),
-                    status = OrderStatus.IN_PROGRESS,
-                    orderDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+    private fun submitOrder(navigateToPayment: Boolean) {
+        val user = guestViewModel.guest.value
+        val dishes = guestViewModel.selectedDishes.value.orEmpty()
+
+        // Проверки
+        if (user == null) {
+            StyleableToast.makeText(requireContext(), getString(R.string.order_empty), R.style.errorToast).show()
+            return
+        }
+        if (dishes.isEmpty()) {
+            StyleableToast.makeText(requireContext(), getString(R.string.cart_empty), R.style.errorToast).show()
+            return
+        }
+
+        // Получаем последний bookingId
+        val userBookings = reserveViewModel.bookings.value.orEmpty()
+            .filter { it.userId == user.idUser }
+        val bookingId = userBookings.lastOrNull()?.idBooking
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            val now = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+            val existingOrder = orderViewModel.currentOrder.value
+
+            // Формируем объект Order
+            val order = existingOrder?.copy(
+                totalAmount = guestViewModel.getTotalFee().toFloat(),
+                orderDate = now
+            ) ?: Order(
+                userId = user.idUser,
+                bookingId = bookingId,
+                totalAmount = guestViewModel.getTotalFee().toFloat(),
+                status = OrderStatus.IN_PROGRESS,
+                orderDate = now
+            )
+
+            // Формируем список DishOrder
+            val dishOrders = dishes.map { dish ->
+                DishOrder(
+                    orderId = order.orderId,
+                    dishId = dish.idDish,
+                    quantity = dish.quantity
                 )
+            }
 
-                val dishOrders = selectedDishes.map { dish ->
-                    DishOrder(
-                        orderId = 0,
-                        dishId = dish.idDish,
-                        quantity = dish.quantity
-                    )
-                }
+            // Создаём или обновляем заказ
+            if (existingOrder == null) {
+                // Новый заказ
+                val created = orderViewModel.placeOrderSuspend(order, dishOrders)
+                orderViewModel.setCurrentOrder(created)
+            } else {
+                // Обновление существующего
+                orderViewModel.updateFullOrder(order, dishOrders)
+            }
 
-                orderViewModel.placeOrder(order, dishOrders)
-                guestViewModel.clearCart()
+            // Очищаем корзину
+            guestViewModel.clearCart()
+
+            // Навигация
+            if (navigateToPayment) {
+                findNavController().navigate(R.id.paymentFragment)
+            } else {
                 findNavController().navigate(R.id.orderHistoryFragment)
             }
         }
-
-        binding.changeOrderBtn.setOnClickListener {
-            val currentOrder = orderViewModel._currentOrder.value
-            currentOrder?.let { order ->
-                val selectedDishes = guestViewModel.selectedDishes.value ?: emptyList()
-                if (selectedDishes.isEmpty()) {
-                    Toast.makeText(requireContext(), "Cart is empty", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
-                }
-
-                viewLifecycleOwner.lifecycleScope.launch {
-                    val dishOrders = selectedDishes.map { dish ->
-                        DishOrder(
-                            orderId = order.orderId,
-                            dishId = dish.idDish,
-                            quantity = dish.quantity
-                        )
-                    }
-                    guestViewModel.clearCart()
-                    orderViewModel.deleteAllDishesByOrderId(order.orderId)
-                    orderViewModel.updateFullOrder(order, dishOrders)
-                    findNavController().navigate(R.id.orderHistoryFragment)
-                }
-            }
-        }
-
-
-        binding.resumeImageBtn.setOnClickListener {
-            orderViewModel.resumeOrder()
-        }
-
-        binding.openPaymentMethod.setOnClickListener {
-            findNavController().navigate(R.id.paymentFragment)
-        }
-
-        binding.cancelImageBtn.setOnClickListener {
-            guestViewModel.clearCart()
-            findNavController().navigate(R.id.homeFragment)
-        }
     }
 
+    // Реализация интерфейсов управления корзиной
     override fun plusNumberItem(position: Int) {
         guestViewModel.updateItemQuantity(position, increment = true)
     }
-
     override fun minusNumberItem(position: Int) {
         guestViewModel.updateItemQuantity(position, increment = false)
     }
-
     override fun addToCart(dish: Dish, quantity: Int) {
         guestViewModel.addToCart(dish, quantity)
     }
-}
 
+    override fun onResume() {
+        super.onResume()
+        guestViewModel.selectedDishes.value?.let { cartAdapter.submitList(it.toList()) }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

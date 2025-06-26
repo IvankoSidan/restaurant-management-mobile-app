@@ -25,10 +25,10 @@ class OrderAdapter(private val orderManagementListener: OrderManagementListener)
         private val dishName: TextView = itemView.findViewById(R.id.dishName)
 
         fun bind(order: Order, formattedDishes: String) {
-            textOrderNumber.text = "Order #${order.orderId}"
+            textOrderNumber.text = itemView.context.getString(R.string.order_number, order.orderId)
             statusOrder.text = order.status.getDisplayName()
             orderDate.text = order.orderDate
-            totalOrder.text = String.format("%.2f $", order.totalAmount)
+            totalOrder.text = String.format("%.2f %s", order.totalAmount, itemView.context.getString(R.string.currency_sign))
             dishName.text = formattedDishes
         }
     }
@@ -47,7 +47,7 @@ class OrderAdapter(private val orderManagementListener: OrderManagementListener)
             orderManagementListener.onDeleteOrder(order)
         }
 
-        holder.itemView.findViewById<ImageView>(R.id.repeatImageBtn).setOnClickListener {
+        holder.itemView.findViewById<ImageView>(R.id.payImageBtn).setOnClickListener {
             orderManagementListener.onRepeatOrder(order)
         }
 

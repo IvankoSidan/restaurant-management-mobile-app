@@ -35,7 +35,7 @@
                     android:id="@+id/titleFoodCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pizza"
+                    android:text="@string/list_all"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold"

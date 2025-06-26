@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".Presentation.Fragments.GuestFragment.AddCartFragment"
+    android:background="@drawable/payment_back"
+    android:elevation="8dp"
+    android:layout_margin="16dp"
+    android:fitsSystemWindows="true"
+    android:windowSoftInputMode="adjustResize">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:layout_marginStart="8dp"
+        android:padding="16dp"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardLayout"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/form_card_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton">
+
+        <ImageView
+            android:id="@+id/chipCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/chip_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/networkCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/network"
+            app:layout_constraintBottom_toBottomOf="@+id/chipCard"
+            app:layout_constraintStart_toEndOf="@+id/chipCard"
+            app:layout_constraintTop_toTopOf="@+id/chipCard" />
+
+        <TextView
+            android:id="@+id/cardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/xxxx_xxxx_xxxx_xxxx"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chipCard" />
+
+        <TextView
+            android:id="@+id/cardHolderNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/card_holder"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/cardNumber"
+            app:layout_constraintTop_toBottomOf="@+id/cardNumber" />
+
+        <TextView
+            android:id="@+id/expirationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/_00_00"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColorHint="#4E4E4E"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/cardHolderNameTitle"
+            app:layout_constraintTop_toBottomOf="@+id/cardHolderNameTitle" />
+
+        <TextView
+            android:id="@+id/cvv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/cvv"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColorHint="#4E4E4E"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/expirationDate"
+            app:layout_constraintEnd_toEndOf="@+id/cardNumber"
+            app:layout_constraintTop_toTopOf="@+id/expirationDate" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardForm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/cardLayout"
+        app:layout_constraintStart_toStartOf="@+id/cardLayout"
+        app:layout_constraintTop_toBottomOf="@+id/cardLayout">
+
+        <EditText
+            android:id="@+id/etCardNumber"
+            style="@style/HintTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/cat_7_back"
+            android:drawableStart="@drawable/credit_card"
+            android:drawablePadding="10dp"
+            android:hint="@string/card_number"
+            android:inputType="number"
+            android:digits="0123456789 "
+            android:maxLength="19"
+            android:paddingStart="15dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etCardHolder"
+            style="@style/HintTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/cat_7_back"
+            android:drawableStart="@drawable/person_outline"
+            android:drawablePadding="10dp"
+            android:hint="@string/card_holder_name"
+            android:inputType="textPersonName|textCapWords"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+            android:maxLength="50"
+            android:paddingStart="15dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/etCardNumber"
+            app:layout_constraintStart_toStartOf="@+id/etCardNumber"
+            app:layout_constraintTop_toBottomOf="@+id/etCardNumber" />
+
+        <EditText
+            android:id="@+id/etCardDate"
+            style="@style/HintTextStyle"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/cat_7_back"
+            android:drawableStart="@drawable/calendar_today"
+            android:drawablePadding="10dp"
+            android:hint="@string/mm_yy"
+            android:inputType="number"
+            android:digits="0123456789/"
+            android:maxLength="5"
+            android:paddingStart="15dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/etCardHolder"
+            app:layout_constraintTop_toBottomOf="@+id/etCardHolder" />
+
+        <EditText
+            android:id="@+id/etCardCVV"
+            style="@style/HintTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/cat_7_back"
+            android:drawableStart="@drawable/lock_outline"
+            android:drawablePadding="10dp"
+            android:hint="@string/cvv"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            android:paddingStart="15dp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/etCardDate"
+            app:layout_constraintEnd_toEndOf="@+id/etCardHolder"
+            app:layout_constraintStart_toEndOf="@+id/etCardDate"
+            app:layout_constraintTop_toTopOf="@+id/etCardDate" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirmPaymentButton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/payment_item_back"
+            android:text="@string/add_card"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:layout_constraintEnd_toEndOf="@+id/etCardCVV"
+            app:layout_constraintStart_toStartOf="@+id/etCardDate"
+            app:layout_constraintTop_toBottomOf="@+id/etCardDate" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

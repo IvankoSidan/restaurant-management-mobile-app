@@ -1,8 +1,5 @@
 package com.example.myfirstapp.data.Models
 
-import com.google.gson.annotations.SerializedName
-
-
 data class Dish(
     val idDish: Long,
     val title: String,

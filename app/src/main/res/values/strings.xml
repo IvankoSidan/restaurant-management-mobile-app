@@ -1,13 +1,280 @@
 <resources>
-    <string name="app_name">MyFirstApp</string>
+    <string name="app_name" translatable="false">MyFirstApp</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="order_history">Order History</string>
+    <string name="payment_method">Payment Methods</string>
+    <string name="total">$0.0</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="reserved">Reserved</string>
+    <string name="available">Available</string>
+    <string name="selected">Selected</string>
+    <string name="reserve_table">Reserve Table</string>
+    <string name="name">Name</string>
+    <string name="date">Date</string>
+    <string name="date_info">Date:</string>
+    <string name="time">Time</string>
+    <string name="duration">Duration</string>
+    <string name="guests">No. of Guests</string>
+    <string name="occasion">Occasion</string>
+    <string name="table">Table Number</string>
+    <string name="floor">Floor</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="make_an_order_for_booking">Make an order for booking !</string>
+    <string name="floor_image">Floor image</string>
+    <string name="table_image">table image</string>
+    <string name="table_icon">table icon</string>
+    <string name="payment_methods">Payment Methods</string>
+    <string name="booking_date">Booking Date:</string>
+    <string name="booking_status">Booking Status:</string>
+    <string name="reservation_code">Reservation \nCode:</string>
+    <string name="reserved_tables">Reserved tables:</string>
+    <string name="guest_count">Guest Count:</string>
+    <string name="cardholder_name">Cardholder Name</string>
+    <string name="xxxx_xxxx_xxxx_xxxx">**** **** **** ****</string>
+    <string name="card_holder">Card Holder</string>
+    <string name="your_holder_name">Your Holder Name</string>
+    <string name="_00_00">00/00</string>
+    <string name="cvv" translatable="false">CVV</string>
+    <string name="card_number">Card Number</string>
+    <string name="booking_history">Booking history</string>
+    <string name="book_a_table">Book a table</string>
+    <string name="date_amp_time"><![CDATA[Date & Time]]></string>
+    <string name="_60_min">60 min</string>
+    <string name="guest">Guest</string>
+    <string name="type_your_email">Type your email</string>
+    <string name="type_your_name">Type your name</string>
+    <string name="type_your_password">Type your password</string>
+    <string name="features_dishes">Features Dishes</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="log_out">Log out</string>
+    <string name="choose_a_language">Choose a language</string>
+    <string name="choose_a_theme">Сhange the theme</string>
+    <string name="order_1">Order #1</string>
+    <string name="status_info">Status:</string>
+    <string name="total_info">Total:</string>
+    <string name="dishes_info">Dishes:</string>
+    <string name="delete_order_info">Delete Order</string>
+    <string name="delete">Delete</string>
+    <string name="payment_the_order_info">Payment the Order</string>
+    <string name="to_pay">To pay</string>
+    <string name="change_order_info">Change Order</string>
+    <string name="change">Confirm the changes</string>
+    <string name="change_1">Change</string>
+    <string name="credit_card">Credit Card</string>
+    <string name="success_info">Success !</string>
+    <string name="your_payment_was_successful_a_receipt_for_this_purchase_has_been_sent_to_your_email">Your payment was successful. A receipt for this purchase has been sent to your email.</string>
+    <string name="go_back">Go Back</string>
+    <string name="sign_in">Sign In</string>
+    <string name="no_current_order_to_update">No current order available to update !</string>
+    <string name="already_registered_sign_in">Already Registered , Sign In !</string>
+    <string name="_0505">**** **** **** 0505</string>
+    <string name="remember_me">Remember me</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="enter_card_number">Enter card number</string>
+    <string name="expiration_date">EXPIRATION DATE</string>
+    <string name="mm_yy">MM/YY</string>
+    <string name="card_holder_s_name">CARD HOLDER\'S NAME</string>
+    <string name="card_holder_name_1">Card Holder Name</string>
+    <string name="confirm_payment">CONFIRM PAYMENT</string>
+    <string name="order_description">Order description</string>
+    <string name="order_info">Order:</string>
+    <string name="date_and_time">Date and time:</string>
+    <string name="total_price">Total Price:</string>
+    <string name="save_card_details_for_future_payments">Save card details for future payments</string>
+    <string name="search_order">Search Order...</string>
+    <string name="hi">Hi</string>
+    <string name="order_amp_eat"><![CDATA[Order & Eat]]></string>
+    <string name="find_your_food">Find Your Food</string>
+    <string name="today_s_best_foods">Today\'s best Foods</string>
+    <string name="view_all">view all</string>
+    <string name="choose_category">Choose Category</string>
+    <string name="featured_dishes">Featured dishes</string>
+    <string name="card_holder_name">Card Holder Name</string>
+    <string name="add_card">Add Card</string>
+    <string name="successfully_n_reserved_your_table">Successfully \n Reserved Your Table !</string>
+    <string name="reserve_id">Reserve ID :</string>
+    <string name="rsv5232">RSV5232</string>
+    <string name="search_here">Search here..</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="my_cart">My Cart</string>
+    <string name="information">Information</string>
+    <string name="total_1">Total</string>
+    <string name="cash">Cash</string>
+    <string name="cancel_the_order">Cancel the Order</string>
+    <string name="order_now">Order Now</string>
+    <string name="to_close">To close</string>
+
+
+
+
+    <!-- Guest ViewModel Messages -->
+    <string name="error_categories_not_found">Categories were not found!</string>
+    <string name="error_dishes_not_found">Dishes were not found!</string>
+    <string name="error_best_dishes_not_found">Best dishes were not found!</string>
+    <string name="error_dish_not_in_menu">This dish is not on the menu!</string>
+    <string name="error_dishes_not_in_category">These dishes are not in the category!</string>
+    <string name="error_favorite_dishes_not_found">Favorite dishes not found!</string>
+    <string name="error_user_not_logged_in">User not logged in</string>
+    <string name="error_failed_add_favorite">Failed to add favorite dish: %1$s</string>
+    <string name="error_failed_remove_favorite">Failed to remove favorite dish: %1$s</string>
+    <string name="message_dish_already_favorite">This dish is already in favorites!</string>
+    <string name="message_dish_added_favorite">The dish has been added to favorites!</string>
+    <string name="remove_favorite">removed from favorites!</string>
+    <string name="min">min</string>
+    <string name="rating">Rating</string>
+
+    <!-- Login ViewModel Messages -->
+    <string name="error_empty_response">Empty response body</string>
+    <string name="error_missing_user_data">User data is missing</string>
+    <string name="error_missing_token">Token is missing</string>
+    <string name="error_missing_user_id">User ID is missing</string>
+    <string name="error_missing_user_name">User name is missing</string>
+    <string name="error_missing_user_email">User email is missing</string>
+    <string name="error_missing_user_role">User role is missing</string>
+    <string name="error_login_failed">Login failed: %1$s</string>
+    <string name="error_login_generic">Login error: %1$s</string>
+    <string name="error_registration_failed">Registration failed</string>
+    <string name="error_registration_generic">Registration error: %1$s</string>
+    <string name="error_unknown">Unknown error</string>
+
+    <!-- Order ViewModel Messages -->
+    <string name="error_dish_not_found">Dish not found</string>
+    <string name="error_failed_delete_payment">Failed to delete payment method</string>
+    <string name="error_deleting_payment">Error deleting payment method: %1$s</string>
+
+    <!-- Payment ViewModel Messages -->
+    <string name="error_payment_failed">Payment processing failed: %1$s</string>
+    <string name="error_card_creation_failed">Failed to create card: %1$s</string>
+
+    <!-- Reservation Table ViewModel Messages -->
+    <string name="error_table_update_failed">Failed to update table status</string>
+    <string name="error_booking_creation_failed">Failed to create booking</string>
+    <string name="error_booking_update_failed">Failed to update booking</string>
+    <string name="error_booking_deletion_failed">Failed to delete booking</string>
+    <string name="error_check_availability_failed">Failed to check table availability</string>
+    <string name="error_field_empty">The field should not be empty!</string>
+    <string name="error_order_paid">Order #%1$d has been paid and cannot be changed!</string>
+    <string name="error_order_already_paid">Order #%1$d has already been paid for!</string>
+    <string name="error_payment_methods_null">Payment methods are null!</string>
+    <string name="error_unknown_user">Unknown user!</string>
+    <string name="error_booking_date">Select the booking date!</string>
+    <string name="error_booking_time_passed">The chosen time for today has already passed!</string>
+    <string name="error_exceeds_capacity">The guest count (%1$d) exceeds the capacity (%2$d) of the selected table!</string>
+    <string name="success_reservation_canceled">Reservation canceled!</string>
+    <string name="success_reservation_confirmed">Reservation confirmed!</string>
+    <string name="success_booking_updated">Booking updated!</string>
+    <string name="success_payment_confirmed">Payment confirmed successfully!</string>
+    <string name="error_order_deletion">Are you sure you want to delete this order?</string>
+    <string name="error_select_table">Select at least one table for booking !</string>
+    <string name="floor_info">Floor</string>
+    <string name="select_sort_title">Select a sort</string>
+    <string name="no_date">No date</string>
+    <string name="no_time">No time</string>
+    <string name="no_guests">0</string>
+    <string name="no_duration">0 hours</string>
+    <string name="not_selected">Not selected</string>
+    <string name="select_floor">Floor: </string>
+    <string name="select_table_number">Table: </string>
+    <string name="select_guests_count">Guests count: </string>
+    <string name="success_toast_duration_format">%1$s hours</string>
+    <string name="guests_count">%1$d</string>
+    <string name="cart_empty">Cart Empty</string>
+    <string name="order_empty">Order is empty !</string>
+    <string name="dish_time">%d %s</string>
+    <string name="dish_rating">%1$.2f %2$s</string>
+    <string name="delete_favorite">deleted from favorites !</string>
+    <string name="booking_error">Booking is not possible as this table is occupied !</string>
+    <string name="list_all">List of all dishes</string>
+    <string name="field_empty">The field should not be empty !</string>
+    <string name="hi_user">Hi, %1$s</string>
+    <string name="delete_order_confirmation">Are you sure you want to delete this order?</string>
+    <string name="order_paid_cannot_change">Order #%1$d has been paid and cannot be changed!</string>
+    <string name="order_paid_repeat">Order #%1$d has already been paid for!</string>
+    <string name="order_change_error">Order #%1$d cannot be changed in its current status.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="error">Error\n</string>
+    <string name="payment_method_null">Payment methods are null!</string>
+
+    <string name="payment_confirmation_success">Payment confirmed successfully!</string>
+    <string name="order_data_not_found">Order data not found!</string>
+    <string name="fill_card_details">Please fill in all card details!</string>
+    <string name="invalid_card_number">Invalid card number!</string>
+    <string name="invalid_expiration_date">Invalid expiration date!</string>
+    <string name="invalid_cvv">Invalid CVV!</string>
+    <string name="invalid_card_holder_name">Invalid card holder name!</string>
+    <string name="go_back_button">Go Back</string>
+    <string name="exit_popup_title">Payment completed!</string>
+    <string name="confirm_payment_1">Confirm Payment</string>
+
+    <string name="error_invalid_card_holder_name">Invalid card holder name. Only letters are allowed.</string>
+    <string name="error_invalid_cvv">Invalid CVV. Please enter 3 or 4 digits.</string>
+    <string name="error_invalid_expiration_date">Invalid expiration date. Please use MM/YY format.</string>
+    <string name="error_invalid_card_number">Invalid card number. Please enter 16 digits.</string>
+    <string name="reservation_canceled">Reservation canceled!</string>
+    <string name="select_booking_date">Select the booking date!</string>
+    <string name="chosen_time_passed">The chosen time for today has already passed!</string>
+    <string name="no_tables_selected">There are no tables selected!</string>
+    <string name="guest_count_exceeds_capacity">The guest count (%d) exceeds the capacity (%d) of the selected table!</string>
+    <string name="unknown_user">Unknown user!</string>
+    <string name="reservation_confirmed">Reservation confirmed!</string>
+    <string name="no_table_selected">There is no table selected!</string>
+    <string name="booking_updated">Booking updated!</string>
+    <string name="booking_time_past">The booking time has already passed!</string>
+    <string name="select_month">Select a month</string>
+    <string name="unknown_error">An unknown error occurred.</string>
+    <string name="order_delete_error">The order #%1$d has been paid and is currently in processing !</string>
+    <string name="table_unavailable">Table %s is unavailable!</string>
+    <string name="failed_to_update_table_status">Failed to update table status for table %s.</string>
+    <string name="failed_to_create_booking">Failed to create booking for table %s.</string>
+    <string name="duration_text">%1$d min</string>
+    <string name="amount_error">The order amount cannot be less than zero !</string>
+    <string name="currency_sign">$</string>
+    <string name="minutes">min</string>
+    <string name="order_number">Order #%d</string>
+    <string name="delete_payment_method_confirmation">Do you really want to delete the payment method?</string>
+    <string name="price_format">%.2f $</string>
+    <string name="time_format">%d %s</string>
+
     <string-array name="user_roles">
         <item>Guest</item>
     </string-array>
     <dimen name="text_size_large">20sp</dimen>
     <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_small">14sp</dimen>
+
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="details">Details</string>
+    <string name="quantity">Quantity</string>
+    <string name="total_price_1">Total Price</string>
+    <string name="add_to_cart">Add to Cart</string>
+
+
+
+    <string name="invalid_email">Invalid email: %1$s</string>
+    <string name="invalid_name">Invalid name: %1$s</string>
+    <string name="invalid_password">Invalid password: %1$s</string>
+    <string name="registration_successful">Registration successful!</string>
+    <string name="registration_failed">Registration failed!</string>
+    <string name="unexpected_error">Unexpected error occurred.</string>
+    <string name="email_validation_error">Email validation error: %1$s</string>
+    <string name="password_validation_error">Password validation error: %1$s</string>
+    <string name="login_successful">Login successful!</string>
+    <string name="login_error">Login error: %1$s</string>
+    <string name="invalid_duration">Invalid duration</string>
+
+
+
+
+
+
 
     <string-array name="spinner_rate_items">
         <item>All</item>
@@ -23,10 +290,70 @@
         <item>more than 30 min</item>
     </string-array>
 
+    <string-array name="floor_titles">
+        <item>1st Floor</item>
+        <item>2nd Floor</item>
+        <item>3rd Floor</item>
+    </string-array>
+
     <string-array name="spinner_price_items">
         <item>All</item>
         <item>1$ - 10$</item>
         <item>10$ - 30$</item>
         <item>more than 30$</item>
     </string-array>
+
+    <string-array name="sort_options">
+        <item>Sort by Date</item>
+        <item>Sort by Guest Count</item>
+        <item>Sort by Status</item>
+    </string-array>
+
+    <array name="background_resources">
+        <item>@drawable/cat_1_back</item>
+        <item>@drawable/cat_2_back</item>
+        <item>@drawable/cat_3_back</item>
+        <item>@drawable/cat_4_back</item>
+        <item>@drawable/cat_5_back</item>
+        <item>@drawable/cat_6_back</item>
+        <item>@drawable/cat_7_back</item>
+        <item>@drawable/cat_8_back</item>
+    </array>
+
+    <string-array name="months_array">
+        <item>january</item>
+        <item>february</item>
+        <item>march</item>
+        <item>april</item>
+        <item>may</item>
+        <item>june</item>
+        <item>july</item>
+        <item>august</item>
+        <item>september</item>
+        <item>october</item>
+        <item>november</item>
+        <item>december</item>
+    </string-array>
+
+
+    <plurals name="hours">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+
+    <plurals name="minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+
+    <string name="minute">minute</string>
+    <string name="login_failed">Login Failed !\n</string>
+    <string name="order_management">Order Management</string>
+    <string name="error_removing_favorite">It was removed from favorites !</string>
+    <string name="already_removed">This dish has already been removed from favorites</string>
+
+
+
+    <string name="new_order_confirm_title">New Order</string>
+    <string name="new_order_confirm_message">You already have an order in progress. Creating a new order will clear the current one. Do you want to continue ?</string>
 </resources>

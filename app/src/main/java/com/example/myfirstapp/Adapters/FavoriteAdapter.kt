@@ -58,7 +58,7 @@ class FavoriteAdapter(private val listener: FavoriteSelectedListener) : ListAdap
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         val dish = getItem(position)
-        holder.bind(dish, true)
+        holder.bind(dish, isFavorite = true)
 
         holder.itemView.setOnClickListener {
             listener.loadSelectedDish(dish)
@@ -72,8 +72,11 @@ class FavoriteAdapter(private val listener: FavoriteSelectedListener) : ListAdap
     }
 
     fun removeDish(dish: Dish) {
-        val currentList = currentList.toMutableList()
-        currentList.remove(dish)
-        submitList(currentList)
+        val currentMutableList = currentList.toMutableList()
+        val index = currentMutableList.indexOf(dish)
+        if (index != -1) {
+            currentMutableList.removeAt(index)
+            submitList(currentMutableList)
+        }
     }
 }

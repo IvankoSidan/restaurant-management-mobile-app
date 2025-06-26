@@ -1,6 +1,7 @@
 package com.example.myfirstapp.Api
 
 
+import com.example.myfirstapp.data.DTO.DishOrderDetails
 import com.example.myfirstapp.data.Models.Dish
 import com.example.myfirstapp.data.Models.DishOrder
 import com.example.myfirstapp.data.Models.Order
@@ -12,6 +13,7 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.Call
 import retrofit2.Response
+import retrofit2.http.Query
 
 interface OrderApi {
 
@@ -30,9 +32,6 @@ interface OrderApi {
     @DELETE("api/orders/{orderId}")
     suspend fun deleteOrder(@Path("orderId") orderId: Long): Response<Void>
 
-    @POST("api/orders/{orderId}/dishes")
-    suspend fun addDishToOrder(@Path("orderId") orderId: Long, @Body dishOrder: DishOrder): Response<Void>
-
     @GET("api/orders/{orderId}/dishes")
     suspend fun getDishesByOrderId(@Path("orderId") orderId: Long): Response<List<DishOrder>>
 
@@ -40,5 +39,23 @@ interface OrderApi {
     suspend fun deleteDishesByOrderId(@Path("orderId") orderId: Long): Response<Void>
 
     @GET("api/dishes/{dishId}")
-    suspend fun getDishById(@Path("dishId") dishId: Long): Response<Dish>
+    suspend fun getDishById(
+        @Path("dishId") dishId: Long,
+        @Query("language") language: String
+    ): Response<Dish>
+
+    @POST("api/orders/{orderId}/dishes/batch")
+    suspend fun addDishesBatch(
+        @Path("orderId") orderId: Long,
+        @Body dishes: List<DishOrder>
+    ): Response<Void>
+
+    @GET("api/orders/{orderId}/dish-details")
+    suspend fun getDishDetailsByOrderId(
+        @Path("orderId") orderId: Long,
+        @Query("language") language: String
+    ): Response<List<DishOrderDetails>>
+
+    @POST("/dishes/batch")
+    suspend fun getDishesByIds(@Body ids: List<Long>): Response<List<Dish>>
 }

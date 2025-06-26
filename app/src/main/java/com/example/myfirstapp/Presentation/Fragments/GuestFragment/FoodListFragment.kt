@@ -1,5 +1,6 @@
 package com.example.myfirstapp.Presentation.Fragments.GuestFragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,23 +10,29 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.myfirstapp.Adapters.FoodListAdapter
 import com.example.myfirstapp.Interfaces.DishSelectedListener
 import com.example.myfirstapp.R
+import com.example.myfirstapp.Strategy.DishFilterManager
+import com.example.myfirstapp.Strategy.PriceFilterStrategy
+import com.example.myfirstapp.Strategy.RateFilterStrategy
+import com.example.myfirstapp.Strategy.TimeFilterStrategy
 import com.example.myfirstapp.ViewModels.GuestViewModel
 import com.example.myfirstapp.data.Models.Dish
 import com.example.myfirstapp.databinding.FoodListBinding
+import io.github.muddz.styleabletoast.StyleableToast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FoodListFragment : Fragment(), DishSelectedListener {
 
     private lateinit var binding: FoodListBinding
     private lateinit var foodListAdapter: FoodListAdapter
-    private val guestViewModel: GuestViewModel by lazy {
-        ViewModelProvider(requireActivity())[GuestViewModel::class.java]
-    }
+
+    private val guestViewModel: GuestViewModel  by viewModel(ownerProducer  = { requireActivity() })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +45,6 @@ class FoodListFragment : Fragment(), DishSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         foodListAdapter = FoodListAdapter(this)
         binding.foodListItems.apply {
             layoutManager = GridLayoutManager(context, 2)
@@ -46,7 +52,7 @@ class FoodListFragment : Fragment(), DishSelectedListener {
         }
 
         binding.foodBackDialog.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
+            findNavController().popBackStack()
         }
         observeFoodList()
         setupSpinners()
@@ -54,17 +60,18 @@ class FoodListFragment : Fragment(), DishSelectedListener {
 
     private fun observeFoodList() {
         guestViewModel.dishes.observe(viewLifecycleOwner) { result ->
-            result?.let {
-                foodListAdapter.submitList(it)
-                Toast.makeText(requireContext(), "${it.size}", Toast.LENGTH_SHORT).show()
+            if (guestViewModel.dishesByCategory.value.isNullOrEmpty()) {
+                foodListAdapter.submitList(result)
             }
         }
 
-        guestViewModel.foodCategory.observe(viewLifecycleOwner, ::updateTitle)
-
         guestViewModel.dishesByCategory.observe(viewLifecycleOwner) { result ->
-            result?.let {
-                foodListAdapter.submitList(it)
+            if (result.isNullOrEmpty()) {
+                guestViewModel.dishes.value?.let { dishes ->
+                    foodListAdapter.submitList(dishes)
+                }
+            } else {
+                foodListAdapter.submitList(result)
             }
         }
 
@@ -74,15 +81,13 @@ class FoodListFragment : Fragment(), DishSelectedListener {
             }
         }
 
-        guestViewModel.favoriteDishes.observe(viewLifecycleOwner) { result ->
-            result?.let {
-                foodListAdapter.submitList(it)
-            }
+        guestViewModel.foodCategory.observe(viewLifecycleOwner) { category ->
+            updateTitle(category)
         }
     }
 
     private fun updateTitle(category: String?) {
-        binding.titleFoodCategory.text = category ?: "List of all dishes"
+        binding.titleFoodCategory.text = category?.takeIf { it.isNotEmpty() } ?: getString(R.string.list_all)
     }
 
     override fun loadSelectedDish(dish: Dish) {
@@ -133,64 +138,25 @@ class FoodListFragment : Fragment(), DishSelectedListener {
     }
 
     private fun applyFilters() {
-        val rate = binding.spinnerStar.selectedItem.toString()
-        val time = binding.spinnerTimeValue.selectedItem.toString()
-        val price = binding.spinnerPrice.selectedItem.toString()
+        val rateIndex = binding.spinnerStar.selectedItemPosition
+        val timeIndex = binding.spinnerTimeValue.selectedItemPosition
+        val priceIndex = binding.spinnerPrice.selectedItemPosition
 
-        val filteredDishes = when {
-            guestViewModel.dishesByCategory.value != null -> {
-                guestViewModel.dishesByCategory.value?.filter { dish ->
-                    isRateValid(dish.star, rate) && isTimeValid(dish.timeValue, time) && isPriceValid(dish.price, price)
-                }
-            }
-            guestViewModel.dishesByName.value != null -> {
-                guestViewModel.dishesByName.value?.filter { dish ->
-                    isRateValid(dish.star, rate) && isTimeValid(dish.timeValue, time) && isPriceValid(dish.price, price)
-                }
-            }
-            guestViewModel.favoriteDishes.value != null -> {
-                guestViewModel.favoriteDishes.value?.filter { dish ->
-                    isRateValid(dish.star, rate) && isTimeValid(dish.timeValue, time) && isPriceValid(dish.price, price)
-                }
-            }
-            else -> {
-                guestViewModel.dishes.value?.filter { dish ->
-                    isRateValid(dish.star, rate) && isTimeValid(dish.timeValue, time) && isPriceValid(dish.price, price)
-                }
-            }
+        val strategies = listOf(
+            RateFilterStrategy(rateIndex),
+            TimeFilterStrategy(timeIndex),
+            PriceFilterStrategy(priceIndex)
+        )
+
+        val dishes = when {
+            !guestViewModel.dishesByName.value.isNullOrEmpty() -> guestViewModel.dishesByName.value
+            !guestViewModel.dishesByCategory.value.isNullOrEmpty() -> guestViewModel.dishesByCategory.value
+            else -> guestViewModel.dishes.value
         }
 
+        val filteredDishes = dishes?.let { DishFilterManager(strategies).applyFilters(it) }
         foodListAdapter.submitList(filteredDishes?.toMutableList())
         foodListAdapter.notifyDataSetChanged()
     }
-
-    private fun isRateValid(rating: Float, rate: String): Boolean {
-        return when (rate) {
-            "All" -> true
-            "3.0 - 4.0" -> rating in 3.0..4.0
-            "4.0 - 4.5" -> rating in 4.0..4.5
-            "4.5 - 5.0" -> rating in 4.5..5.0
-            else -> true
-        }
-    }
-
-    private fun isTimeValid(cookingTime: Int, time: String): Boolean {
-        return when (time) {
-            "All" -> true
-            "0 - 10 min" -> cookingTime in 0..10
-            "10 - 30 min" -> cookingTime in 10..30
-            "more than 30 min" -> cookingTime > 30
-            else -> true
-        }
-    }
-
-    private fun isPriceValid(price: Double, priceRange: String): Boolean {
-        return when (priceRange) {
-            "All" -> true
-            "1$ - 10$" -> price in 1.0..10.0
-            "10$ - 30$" -> price in 10.0..30.0
-            "more than 30$" -> price > 30.0
-            else -> true
-        }
-    }
 }
+

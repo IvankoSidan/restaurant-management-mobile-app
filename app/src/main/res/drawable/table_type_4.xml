@@ -1,0 +1,45 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="216dp"
+    android:height="290dp"
+    android:viewportWidth="216"
+    android:viewportHeight="290">
+  <path
+      android:pathData="M94,249L124,249A5,5 0,0 1,129 254L129,264A5,5 0,0 1,124 269L94,269A5,5 0,0 1,89 264L89,254A5,5 0,0 1,94 249z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M151,45L66,45A15,15 0,0 0,51 60L51,230A15,15 0,0 0,66 245L151,245A15,15 0,0 0,166 230L166,60A15,15 0,0 0,151 45z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M94,21L124,21A5,5 0,0 1,129 26L129,36A5,5 0,0 1,124 41L94,41A5,5 0,0 1,89 36L89,26A5,5 0,0 1,94 21z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M175,54L185,54A5,5 0,0 1,190 59L190,89A5,5 0,0 1,185 94L175,94A5,5 0,0 1,170 89L170,59A5,5 0,0 1,175 54z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M175,103L185,103A5,5 0,0 1,190 108L190,138A5,5 0,0 1,185 143L175,143A5,5 0,0 1,170 138L170,108A5,5 0,0 1,175 103z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M175,103L185,103A5,5 0,0 1,190 108L190,138A5,5 0,0 1,185 143L175,143A5,5 0,0 1,170 138L170,108A5,5 0,0 1,175 103z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M175,197L185,197A5,5 0,0 1,190 202L190,232A5,5 0,0 1,185 237L175,237A5,5 0,0 1,170 232L170,202A5,5 0,0 1,175 197z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M175,150L185,150A5,5 0,0 1,190 155L190,185A5,5 0,0 1,185 190L175,190A5,5 0,0 1,170 185L170,155A5,5 0,0 1,175 150z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M32,51L42,51A5,5 0,0 1,47 56L47,86A5,5 0,0 1,42 91L32,91A5,5 0,0 1,27 86L27,56A5,5 0,0 1,32 51z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M32,100L42,100A5,5 0,0 1,47 105L47,135A5,5 0,0 1,42 140L32,140A5,5 0,0 1,27 135L27,105A5,5 0,0 1,32 100z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M32,100L42,100A5,5 0,0 1,47 105L47,135A5,5 0,0 1,42 140L32,140A5,5 0,0 1,27 135L27,105A5,5 0,0 1,32 100z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M32,194L42,194A5,5 0,0 1,47 199L47,229A5,5 0,0 1,42 234L32,234A5,5 0,0 1,27 229L27,199A5,5 0,0 1,32 194z"
+      android:fillColor="#D3D3D3"/>
+  <path
+      android:pathData="M32,147L42,147A5,5 0,0 1,47 152L47,182A5,5 0,0 1,42 187L32,187A5,5 0,0 1,27 182L27,152A5,5 0,0 1,32 147z"
+      android:fillColor="#D3D3D3"/>
+</vector>

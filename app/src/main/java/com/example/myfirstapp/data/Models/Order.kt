@@ -6,7 +6,7 @@ data class Order(
     val orderId: Long = 0,
     val userId: Long,
     val bookingId: Long?,
-    val totalAmount: Double,
-    val status: OrderStatus,
+    val totalAmount: Float,
+    var status: OrderStatus,
     val orderDate: String
 )

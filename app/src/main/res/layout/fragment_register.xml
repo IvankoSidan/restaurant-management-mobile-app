@@ -21,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="Type your email"
+        android:hint="@string/type_your_email"
         app:startIconDrawable="@drawable/ic_email"
         app:endIconMode="clear_text">
 
@@ -42,7 +42,7 @@
         android:layout_marginTop="24dp"
         app:boxStrokeColor="#FFC801"
         app:hintTextColor="#FFC801"
-        android:hint="Type your name"
+        android:hint="@string/type_your_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
         android:layout_marginTop="24dp"
         app:boxStrokeColor="#FFC801"
         app:hintTextColor="#FFC801"
-        android:hint="Type your password"
+        android:hint="@string/type_your_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +84,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button"
         android:layout_width="0dp"
@@ -91,7 +92,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="24dp"
         android:background="#FFC801"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView"
@@ -104,10 +105,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Already Registered , Sign In !"
+        android:text="@string/already_registered_sign_in"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/rememberMeCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remember_me"
+        app:layout_constraintStart_toStartOf="@+id/passwordLayout"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
