@@ -43,10 +43,6 @@ class ReservationTableViewModel(private val repository: ReservationTableReposito
         _totalGuestCount.value = count
     }
 
-    fun createBooking(booking: Booking) = viewModelScope.launch {
-        _bookings.value = repository.createBooking(booking)
-    }
-
     suspend fun tryCreateBooking(booking: Booking): Booking? {
         return try {
             repository.createBooking(booking).lastOrNull()
@@ -104,6 +100,18 @@ class ReservationTableViewModel(private val repository: ReservationTableReposito
     private fun updateSelectedTables() {
         val updatedList = _tables.value?.filter { it.status == TableStatus.SELECTED } ?: emptyList()
         _selectedTables.value = updatedList
+    }
+
+    fun clearSelectedTable() {
+        _selectedTable.value = null
+    }
+
+    fun getBookingsByTableId(tableId: Long, fromDate: String, toDate: String) = viewModelScope.launch {
+        try {
+            _bookings.value = repository.getBookingsByTableId(tableId, fromDate, toDate)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }
 

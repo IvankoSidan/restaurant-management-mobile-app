@@ -81,4 +81,9 @@
         android:name="com.example.myfirstapp.Presentation.Fragments.LoginRegisterFragments.EntryFragment"
         android:label="fragment_entry"
         tools:layout="@layout/fragment_entry" />
+    <dialog
+        android:id="@+id/fragmentBookingInfo"
+        android:name="com.example.myfirstapp.Presentation.Fragments.GuestFragment.FragmentBookingInfo"
+        android:label="fragment_booking_info"
+        tools:layout="@layout/fragment_booking_info" />
 </navigation>
