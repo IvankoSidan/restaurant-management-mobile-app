@@ -102,6 +102,4 @@ class EntryFragment : Fragment() {
         super.onStop()
         loginViewModel.clearLoginResult()
     }
-
-    class InvalidRoleException : Exception("Invalid role selected")
 }

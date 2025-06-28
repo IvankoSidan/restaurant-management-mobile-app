@@ -111,4 +111,15 @@ class ReservationTableRepositoryImpl(private val reserveTableApi: ReserveTableAp
             }
         }
     }
+
+    override suspend fun getBookingsByTableId(
+        tableId: Long,
+        fromDate: String,
+        toDate: String
+    ): List<Booking> = try {
+        reserveTableApi.getBookingsByTableId(tableId, fromDate, toDate)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        emptyList()
+    }
 }

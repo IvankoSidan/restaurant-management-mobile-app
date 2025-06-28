@@ -50,6 +50,7 @@
     <string name="log_out">Выйти</string>
     <string name="choose_a_language">Выберите язык</string>
     <string name="choose_a_theme">Изменить тему</string>
+    <string name="selected_table">Выбран</string>
     <string name="order_1">Заказ #1</string>
     <string name="status_info">Статус:</string>
     <string name="total_info">Итого:</string>
@@ -60,7 +61,9 @@
     <string name="to_pay">К оплате</string>
     <string name="change_order_info">Изменить заказ</string>
     <string name="change">Подтвердить изменения</string>
+
     <string name="change_1">Изменить</string>
+    <string name="booking_title">Бронирования</string>
 
     <string name="credit_card">Кредитная карта</string>
     <string name="success_info">Успех!</string>
@@ -271,6 +274,10 @@
     <string name="login_error">Ошибка входа: %1$s</string>
     <string name="invalid_duration">Недопустимое значение</string>
 
+    <string name="label_reservation_code">Код брони:</string>
+    <string name="label_status">Статус:</string>
+    <string name="label_duration">Длительность:</string>
+    <string name="book_info">Информация о бронировании</string>
 
     <string-array name="spinner_rate_items">
         <item>Все</item>
@@ -346,6 +353,26 @@
         <item quantity="other">%d минут</item>
     </plurals>
 
+    <plurals name="guests">
+        <item quantity="one">%d Гость</item>
+        <item quantity="few">%d Гостя</item>
+        <item quantity="many">%d Гостей</item>
+        <item quantity="other">%d Гостей</item>
+    </plurals>
+
+    <string name="select_start_date">Выберите начальную дату</string>
+    <string name="select_end_date">Выберите конечную дату</string>
+    <string name="error_invalid_range">Некорректный диапазон дат</string>
+    <string name="success_range_loaded">Бронирования загружены</string>
+    <string name="toast_show_booking">Код брони: %1$s</string>
+
+    <string name="today">Сегодня</string>
+    <string name="week">Неделя</string>
+    <string name="custom_range">Произвольно</string>
+
+    <!-- values-ru/strings.xml (русская локализация) -->
+    <string name="label_time_range">Временной диапазон:</string>
+    <string name="select_date_range">Выберите диапазон дат</string>
 
     <string name="minute">минут</string>
     <string name="error_removing_favorite">Было удалено из избранного !</string>

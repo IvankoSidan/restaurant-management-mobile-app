@@ -17,4 +17,10 @@ interface ReservationTableRepository {
     suspend fun onTableClicked(tableId: Long, currentTables: List<RestaurantTable>): List<RestaurantTable>
     suspend fun getSelectedTables(currentTables: List<RestaurantTable>): List<RestaurantTable>
     suspend fun setSelectedTableIds(ids: LongArray, currentTables: List<RestaurantTable>): List<RestaurantTable>
+    suspend fun getBookingsByTableId(
+        tableId: Long,
+        fromDate: String,
+        toDate: String
+    ): List<Booking>
 }
+

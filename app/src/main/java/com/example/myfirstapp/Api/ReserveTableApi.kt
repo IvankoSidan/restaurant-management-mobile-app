@@ -45,4 +45,11 @@ interface ReserveTableApi {
         @Query("bookingTime") bookingTime: String,
         @Query("duration") duration: Int
     ): Boolean
+
+    @GET("api/bookings/table/{tableId}")
+    suspend fun getBookingsByTableId(
+        @Path("tableId") tableId: Long,
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String
+    ): List<Booking>
 }

@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.myfirstapp.R
 import com.example.myfirstapp.ViewModels.ReservationTableViewModel
 import com.example.myfirstapp.data.Enums.TableStatus
@@ -98,6 +99,14 @@ class FloorFragment : Fragment() {
             tableView.setOnClickListener {
                 reserveViewModel.onTableClicked(table.idTable)
             }
+
+            tableView.setOnLongClickListener(object : View.OnLongClickListener {
+                override fun onLongClick(v: View?): Boolean {
+                    reserveViewModel.setSelectedTable(table)
+                    findNavController().navigate(R.id.fragmentBookingInfo)
+                    return true
+                }
+            })
             overlayContainer.addView(tableView)
         }
     }

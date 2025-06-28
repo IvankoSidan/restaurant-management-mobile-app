@@ -50,6 +50,7 @@
     <string name="log_out">Log out</string>
     <string name="choose_a_language">Choose a language</string>
     <string name="choose_a_theme">Сhange the theme</string>
+    <string name="selected_table">Selected</string>
     <string name="order_1">Order #1</string>
     <string name="status_info">Status:</string>
     <string name="total_info">Total:</string>
@@ -60,7 +61,10 @@
     <string name="to_pay">To pay</string>
     <string name="change_order_info">Change Order</string>
     <string name="change">Confirm the changes</string>
+
     <string name="change_1">Change</string>
+    <string name="booking_title">Reservations</string>
+
     <string name="credit_card">Credit Card</string>
     <string name="success_info">Success !</string>
     <string name="your_payment_was_successful_a_receipt_for_this_purchase_has_been_sent_to_your_email">Your payment was successful. A receipt for this purchase has been sent to your email.</string>
@@ -104,8 +108,6 @@
     <string name="cancel_the_order">Cancel the Order</string>
     <string name="order_now">Order Now</string>
     <string name="to_close">To close</string>
-
-
 
 
     <!-- Guest ViewModel Messages -->
@@ -257,7 +259,6 @@
     <string name="add_to_cart">Add to Cart</string>
 
 
-
     <string name="invalid_email">Invalid email: %1$s</string>
     <string name="invalid_name">Invalid name: %1$s</string>
     <string name="invalid_password">Invalid password: %1$s</string>
@@ -270,9 +271,10 @@
     <string name="login_error">Login error: %1$s</string>
     <string name="invalid_duration">Invalid duration</string>
 
-
-
-
+    <string name="label_reservation_code">Reservation code:</string>
+    <string name="label_status">Status:</string>
+    <string name="label_duration">Duration:</string>
+    <string name="book_info">Booking Info</string>
 
 
 
@@ -346,13 +348,30 @@
         <item quantity="other">%d minutes</item>
     </plurals>
 
+    <plurals name="guests">
+        <item quantity="one">%d Guest</item>
+        <item quantity="other">%d Guests</item>
+    </plurals>
+
+    <string name="select_start_date">Select start date</string>
+    <string name="select_end_date">Select end date</string>
+    <string name="error_invalid_range">Invalid date range</string>
+    <string name="success_range_loaded">Bookings loaded</string>
+    <string name="toast_show_booking">Reservation code: %1$s</string>
+
+    <string name="today">Today</string>
+    <string name="week">Week</string>
+    <string name="custom_range">Custom range</string>
+
     <string name="minute">minute</string>
     <string name="login_failed">Login Failed !\n</string>
     <string name="order_management">Order Management</string>
     <string name="error_removing_favorite">It was removed from favorites !</string>
     <string name="already_removed">This dish has already been removed from favorites</string>
+    <string name="select_date_range">Select a date range</string>
 
-
+    <!-- values/strings.xml (английская локализация по умолчанию) -->
+    <string name="label_time_range">Time Range:</string>
 
     <string name="new_order_confirm_title">New Order</string>
     <string name="new_order_confirm_message">You already have an order in progress. Creating a new order will clear the current one. Do you want to continue ?</string>
