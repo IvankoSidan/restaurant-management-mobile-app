@@ -34,6 +34,16 @@ class LoginViewModel(
         _registrationResult.postValue(result)
     }
 
+    fun loginWithGoogle(idToken: String) = viewModelScope.launch {
+        _loginResult.postValue(LoginResult.Loading)
+        _loginResult.postValue(authRepository.loginWithGoogle(idToken))
+    }
+
+    fun registerWithGoogle(idToken: String) = viewModelScope.launch {
+        _registrationResult.postValue(RegistrationResult.Loading)
+        _registrationResult.postValue(authRepository.registerWithGoogle(idToken))
+    }
+
     fun clearLoginResult() {
         _loginResult.value = LoginResult.Idle
     }

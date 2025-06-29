@@ -104,6 +104,40 @@ class AuthRepositoryImpl(
         }
     }
 
+    override suspend fun loginWithGoogle(idToken: String): LoginResult = try {
+        val response = authApi.loginWithGoogle(mapOf("idToken" to idToken))
+        if (response.isSuccessful) {
+            val body = response.body()!!
+            val userData = body["user"] as Map<*, *>
+            val token = body["token"] as String
+            val user = parseUser(userData)
+            saveUserToPreferences(user, token)
+            authInterceptor.setToken(token)
+            LoginResult.Success(user)
+        } else {
+            LoginResult.Error(stringProvider.getStringResource(R.string.error_login_failed))
+        }
+    } catch (e: Exception) {
+        LoginResult.Error(stringProvider.getStringResource(R.string.error_login_generic))
+    }
+
+    override suspend fun registerWithGoogle(idToken: String): RegistrationResult = try {
+        val response = authApi.loginWithGoogle(mapOf("idToken" to idToken))
+        if (response.isSuccessful) {
+            val body = response.body()!!
+            val userData = body["user"] as Map<*, *>
+            val token = body["token"] as String
+            val user = parseUser(userData)
+            saveUserToPreferences(user, token)
+            authInterceptor.setToken(token)
+            RegistrationResult.Success
+        } else {
+            RegistrationResult.Failure(stringProvider.getStringResource(R.string.error_registration_failed))
+        }
+    } catch (e: Exception) {
+        RegistrationResult.Failure(stringProvider.getStringResource(R.string.error_registration_generic))
+    }
+
     override fun updateUserInPreferences(user: User) {
         val sharedPreferences = sharedPreferencesProvider.sharedPreferences
         with(sharedPreferences.edit()) {
