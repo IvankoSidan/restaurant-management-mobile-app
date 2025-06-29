@@ -381,4 +381,6 @@
 
     <string name="google_sign_in_failed">Google sign-in failed: %1$d</string>
     <string name="google_sign_up_failed">Google sign-up failed: %1$d</string>
+
+    <string name="change_the_currency">Сhange the currency</string>
 </resources>

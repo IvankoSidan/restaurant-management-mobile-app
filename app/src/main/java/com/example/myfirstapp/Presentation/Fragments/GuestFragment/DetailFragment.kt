@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.myfirstapp.Interfaces.FavoriteDishListener
+import com.example.myfirstapp.Objects.CurrencyManager
 import com.example.myfirstapp.R
 import com.example.myfirstapp.ViewModels.GuestViewModel
 import com.example.myfirstapp.data.Models.Dish
@@ -69,12 +70,12 @@ class DetailFragment : Fragment(), FavoriteDishListener {
     private fun setupUI(dish: Dish) {
         with(binding) {
             titleTxt.text = dish.title
-            priceMeal.text = String.format("%.2f $", dish.price)
+            priceMeal.text = CurrencyManager.convertPrice(dish.price)
             textDescription.text = dish.description
             timeTxt.text = getString(R.string.dish_time, dish.timeValue, getString(R.string.min))
             rateTxt.text = getString(R.string.dish_rating, dish.star, getString(R.string.rating))
             ratingBar.rating = dish.star
-            textTotalPrice.text = String.format("%.2f $", quantity * dish.price)
+            textTotalPrice.text = CurrencyManager.convertPrice(quantity * dish.price)
 
             Glide.with(requireContext())
                 .load(dish.imagePath)

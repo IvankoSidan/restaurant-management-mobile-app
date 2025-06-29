@@ -9,18 +9,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.myfirstapp.Interfaces.CurrencyListener
+import com.example.myfirstapp.Objects.CurrencyManager
 import com.example.myfirstapp.Presentation.Activities.MainActivity
 import com.example.myfirstapp.R
 import com.example.myfirstapp.ViewModels.GuestViewModel
 import com.example.myfirstapp.ViewModels.LoginViewModel
+import com.example.myfirstapp.data.Enums.Currency
 import com.example.myfirstapp.databinding.FragmentProfileBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), CurrencyListener {
 
-    private lateinit var binding: FragmentProfileBinding
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
+
     private val guestViewModel: GuestViewModel by viewModel(ownerProducer = { requireActivity() })
     private val loginViewModel: LoginViewModel by viewModel(ownerProducer = { requireActivity() })
 
@@ -28,7 +33,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,6 +41,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         observeProfile()
         setupUI()
+        CurrencyManager.addCurrencyListener(this)
     }
 
     private fun setupUI() {
@@ -68,6 +74,11 @@ class ProfileFragment : Fragment() {
         binding.btnSelectedLanguage.setOnClickListener {
             changeLocale()
         }
+
+        binding.btnSwitchCurrency.setOnClickListener {
+            CurrencyManager.switchCurrency(requireContext())
+        }
+
     }
 
     private fun changeLocale() {
@@ -98,6 +109,22 @@ class ProfileFragment : Fragment() {
                 binding.emailUsers.text = it.email
             }
         }
+    }
+
+    override fun onCurrencyChanged(currency: Currency) {
+        guestViewModel.clearCategories()
+        guestViewModel.clearDishes()
+
+        guestViewModel.loadCategories()
+        guestViewModel.loadAllDishes()
+        guestViewModel.loadAllBestDishes()
+        guestViewModel.loadFavoriteDishes()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        CurrencyManager.removeCurrencyListener(this)
+        _binding = null
     }
 }
 

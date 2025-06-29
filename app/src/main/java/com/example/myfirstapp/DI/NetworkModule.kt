@@ -8,12 +8,12 @@ import com.example.myfirstapp.Api.PaymentApi
 import com.example.myfirstapp.Api.ReserveTableApi
 import com.example.myfirstapp.Objects.AuthInterceptor
 import com.example.myfirstapp.R
+import com.example.myfirstapp.Utils.RetryInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.InputStream
 import java.security.KeyStore
 import java.security.SecureRandom
 import java.security.cert.CertificateFactory
@@ -33,9 +33,9 @@ val networkModule = module {
 
 fun provideOkHttpClient(context: Context): OkHttpClient {
     val certificateFactory = CertificateFactory.getInstance("X.509")
-    val inputStream: InputStream = context.resources.openRawResource(R.raw.localhost_android)
-    val certificate = certificateFactory.generateCertificate(inputStream)
-    inputStream.close()
+    val certificate: java.security.cert.Certificate = context.resources.openRawResource(R.raw.localhost_android).use {
+        certificateFactory.generateCertificate(it)
+    }
 
     val keyStore = KeyStore.getInstance(KeyStore.getDefaultType()).apply {
         load(null, null)
@@ -51,10 +51,11 @@ fun provideOkHttpClient(context: Context): OkHttpClient {
     }
 
     return OkHttpClient.Builder()
-        .addInterceptor(AuthInterceptor()) // Ваш AuthInterceptor
+        .addInterceptor(AuthInterceptor())
         .addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         })
+        .addInterceptor(RetryInterceptor())
         .sslSocketFactory(sslContext.socketFactory, trustManagerFactory.trustManagers[0] as X509TrustManager)
         .hostnameVerifier { hostname, _ -> hostname == "10.0.2.2" }
         .build()

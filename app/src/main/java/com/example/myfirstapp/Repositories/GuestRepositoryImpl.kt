@@ -3,6 +3,7 @@ package com.example.myfirstapp.Repositories
 import android.util.Log
 import com.example.myfirstapp.Api.HomeApi
 import com.example.myfirstapp.Interfaces.GuestRepository
+import com.example.myfirstapp.Objects.CurrencyManager
 import com.example.myfirstapp.data.Models.Category
 import com.example.myfirstapp.data.Models.Dish
 import com.example.myfirstapp.data.Models.FavoriteDish
@@ -108,5 +109,9 @@ class GuestRepositoryImpl(private val homeApi: HomeApi) : GuestRepository {
 
     override suspend fun updateProfile(updatedUser: User): Response<User> {
         return homeApi.updateUser(updatedUser.idUser, updatedUser)
+    }
+
+    override fun convertPrice(price: Double): String {
+        return CurrencyManager.convertPrice(price)
     }
 }

@@ -103,7 +103,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="@+id/layoutProfileData"
             app:layout_constraintStart_toStartOf="@+id/layoutProfileData"
@@ -229,6 +229,26 @@
                 app:layout_constraintTop_toTopOf="@+id/titleSelectTheme"
                 app:srcCompat="@drawable/arrow_forward" />
 
+            <TextView
+                android:id="@+id/titleCurrencySwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/change_the_currency"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/titleSelectTheme"
+                app:layout_constraintTop_toBottomOf="@+id/titleSelectTheme" />
+
+            <ImageView
+                android:id="@+id/btnSwitchCurrency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/titleCurrencySwitch"
+                app:layout_constraintEnd_toEndOf="@+id/btnSelectedTheme"
+                app:layout_constraintTop_toTopOf="@+id/titleCurrencySwitch"
+                app:srcCompat="@drawable/arrow_forward" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout

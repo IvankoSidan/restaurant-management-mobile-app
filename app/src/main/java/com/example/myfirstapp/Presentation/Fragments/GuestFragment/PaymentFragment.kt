@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myfirstapp.Adapters.PaymentMethodAdapter
 import com.example.myfirstapp.Interfaces.OnPaymentListener
+import com.example.myfirstapp.Objects.CurrencyManager
 import com.example.myfirstapp.data.Models.PaymentMethod
 import com.example.myfirstapp.R
 import com.example.myfirstapp.ViewModels.OrderViewModel
@@ -58,8 +59,8 @@ class PaymentFragment : Fragment(), OnPaymentListener {
                 binding.apply {
                     orderDescription.text = "#${it.orderId}"
                     dateTimeOrdering.text = it.orderDate
-                    totalAmount.text = String.format("%.2f $", it.totalAmount)
-                    priceText.text = String.format("%.2f $", it.totalAmount)
+                    totalAmount.text = CurrencyManager.convertPrice(it.totalAmount)
+                    priceText.text = CurrencyManager.convertPrice(it.totalAmount)
                 }
             }
         }
