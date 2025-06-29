@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.myfirstapp.DiffCallbacks.DishDiffCallback
 import com.example.myfirstapp.Interfaces.ManagementCartListener
+import com.example.myfirstapp.Objects.CurrencyManager
 import com.example.myfirstapp.R
 import com.example.myfirstapp.data.Models.Dish
 
@@ -25,8 +26,8 @@ class CartAdapter(private val listener: ManagementCartListener) : ListAdapter<Di
 
         fun bind(dish: Dish) {
             textTitle.text = dish.title
-            feeEachItem.text = String.format("%.2f $", dish.price)
-            totalEachItem.text = String.format("%.2f $", dish.price * dish.quantity)
+            feeEachItem.text = CurrencyManager.convertPrice(dish.price)
+            totalEachItem.text = CurrencyManager.convertPrice(dish.price * dish.quantity)
             count.text = dish.quantity.toString()
 
             Glide.with(itemView.context)
