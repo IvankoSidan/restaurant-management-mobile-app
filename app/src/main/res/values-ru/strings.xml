@@ -380,4 +380,10 @@
 
     <string name="new_order_confirm_title">Новый заказ</string>
     <string name="new_order_confirm_message">У вас уже есть заказ в процессе. Создание нового заказа очистит текущий. Продолжить ?</string>
+    <string name="OR">ИЛИ</string>
+    <string name="sign_up_with_google">РЕГИСТРАЦИЯ ЧЕРЕЗ GOOGLE</string>
+    <string name="sign_in_with_google">ВХОД ЧЕРЕЗ GOOGLE</string>
+
+    <string name="google_sign_in_failed">Не удалось войти через Google: %1$d</string>
+    <string name="google_sign_up_failed">Не удалось зарегистрироваться через Google: %1$d</string>
 </resources>

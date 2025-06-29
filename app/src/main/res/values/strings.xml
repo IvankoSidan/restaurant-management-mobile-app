@@ -375,4 +375,10 @@
 
     <string name="new_order_confirm_title">New Order</string>
     <string name="new_order_confirm_message">You already have an order in progress. Creating a new order will clear the current one. Do you want to continue ?</string>
+    <string name="OR">OR</string>
+    <string name="sign_up_with_google">SING UP WITH GOOGLE</string>
+    <string name="sign_in_with_google">SING IN WITH GOOGLE</string>
+
+    <string name="google_sign_in_failed">Google sign-in failed: %1$d</string>
+    <string name="google_sign_up_failed">Google sign-up failed: %1$d</string>
 </resources>

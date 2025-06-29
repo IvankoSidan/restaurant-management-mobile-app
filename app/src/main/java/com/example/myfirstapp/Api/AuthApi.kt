@@ -20,4 +20,8 @@ interface AuthApi {
 
     @POST("/api/auth/validateToken")
     suspend fun validateToken(@Body tokenDTO: TokenDTO): Response<Map<String, Boolean>>
+
+    @POST("api/auth/google")
+    suspend fun loginWithGoogle(@Body token: Map<String, String>): Response<Map<String, Any>>
 }
+
