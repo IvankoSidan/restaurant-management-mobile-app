@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.myfirstapp.DiffCallbacks.DishDiffCallback
 import com.example.myfirstapp.Interfaces.DishCategoryListener
+import com.example.myfirstapp.Objects.CurrencyManager
 import com.example.myfirstapp.R
 import com.example.myfirstapp.data.Models.Dish
 
@@ -25,7 +26,7 @@ class BestFoodAdapter(private val listener: DishCategoryListener) : ListAdapter<
         fun bind(dish: Dish) {
             val context = itemView.context
             titleTxt.text = dish.title
-            priceMeal.text = context.getString(R.string.price_format, dish.price)
+            priceMeal.text = CurrencyManager.convertPrice(dish.price)
             starTitle.text = dish.star.toString()
 
             Glide.with(context)

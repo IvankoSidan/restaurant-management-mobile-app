@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.myfirstapp.DiffCallbacks.DishDiffCallback
 import com.example.myfirstapp.Interfaces.DishSelectedListener
+import com.example.myfirstapp.Objects.CurrencyManager
 import com.example.myfirstapp.R
 import com.example.myfirstapp.data.Models.Dish
 
@@ -26,7 +27,7 @@ class FoodListAdapter(private val listener: DishSelectedListener) : ListAdapter<
 
         fun bind(dish: Dish) {
             titleFoodItem.text = dish.title
-            priceFood.text = String.format("%.2f %s", dish.price, itemView.context.getString(R.string.currency_sign))
+            priceFood.text = CurrencyManager.convertPrice(dish.price)
             timeCookingFood.text = String.format("%d %s", dish.timeValue, itemView.context.getString(R.string.minutes))
             starFoodImage.text = dish.star.toString()
 

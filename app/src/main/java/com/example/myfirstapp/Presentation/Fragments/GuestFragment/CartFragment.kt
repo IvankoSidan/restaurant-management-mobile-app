@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myfirstapp.Adapters.CartAdapter
 import com.example.myfirstapp.Interfaces.CartManagerListener
 import com.example.myfirstapp.Interfaces.ManagementCartListener
+import com.example.myfirstapp.Objects.CurrencyManager
 import com.example.myfirstapp.R
 import com.example.myfirstapp.ViewModels.GuestViewModel
 import com.example.myfirstapp.ViewModels.OrderViewModel
@@ -77,7 +78,7 @@ class CartFragment : Fragment(), ManagementCartListener, CartManagerListener {
 
     private fun updateTotalFee() {
         val total = guestViewModel.getTotalFee()
-        binding.textTotalPrice.text = "%.2f $".format(total)
+        binding.textTotalPrice.text = CurrencyManager.convertPrice(total)
     }
 
     private fun submitOrder(navigateToPayment: Boolean) {
@@ -105,12 +106,12 @@ class CartFragment : Fragment(), ManagementCartListener, CartManagerListener {
 
             // Формируем объект Order
             val order = existingOrder?.copy(
-                totalAmount = guestViewModel.getTotalFee().toFloat(),
+                totalAmount = guestViewModel.getTotalFee(),
                 orderDate = now
             ) ?: Order(
                 userId = user.idUser,
                 bookingId = bookingId,
-                totalAmount = guestViewModel.getTotalFee().toFloat(),
+                totalAmount = guestViewModel.getTotalFee(),
                 status = OrderStatus.IN_PROGRESS,
                 orderDate = now
             )

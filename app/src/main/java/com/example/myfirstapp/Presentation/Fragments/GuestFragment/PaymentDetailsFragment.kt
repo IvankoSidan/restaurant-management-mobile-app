@@ -168,7 +168,7 @@ class PaymentDetailsFragment : BottomSheetDialogFragment(), CardAdapterListener 
         val payment = Payment(
             idPayment = 0,
             orderId = currentOrder.orderId,
-            paymentAmount = currentOrder.totalAmount,
+            paymentAmount = currentOrder.totalAmount.toFloat(),
             paymentDate = paymentDate,
             paymentStatus = PaymentStatus.SUCCESS
         )

@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.myfirstapp.DiffCallbacks.DishDiffCallback
 import com.example.myfirstapp.Interfaces.FavoriteSelectedListener
+import com.example.myfirstapp.Objects.CurrencyManager
 import com.example.myfirstapp.R
 import com.example.myfirstapp.data.Models.Dish
 
@@ -25,7 +26,7 @@ class FavoriteAdapter(private val listener: FavoriteSelectedListener) : ListAdap
 
         fun bind(dish: Dish, isFavorite: Boolean) {
             titleFoodItem.text = dish.title
-            priceFood.text = String.format("%.2f $", dish.price)
+            priceFood.text = CurrencyManager.convertPrice(dish.price)
             starFoodImage.text = "${dish.star}"
 
             Glide.with(itemView.context)

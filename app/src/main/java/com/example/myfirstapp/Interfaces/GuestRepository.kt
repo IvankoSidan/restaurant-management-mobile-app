@@ -25,5 +25,6 @@ interface GuestRepository {
     fun clearSearchResults(): List<Dish>
     fun clearFavoriteDishes(): List<Dish>
     suspend fun removeFavoriteDish(userId: Long, dishId: Long)
+    fun convertPrice(price: Double): String
 }
 

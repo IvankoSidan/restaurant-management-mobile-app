@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfirstapp.DiffCallbacks.OrderDiffCallback
 import com.example.myfirstapp.Interfaces.OrderManagementListener
+import com.example.myfirstapp.Objects.CurrencyManager
 import com.example.myfirstapp.R
 import com.example.myfirstapp.data.Models.Order
 
@@ -28,7 +29,7 @@ class OrderAdapter(private val orderManagementListener: OrderManagementListener)
             textOrderNumber.text = itemView.context.getString(R.string.order_number, order.orderId)
             statusOrder.text = order.status.getDisplayName()
             orderDate.text = order.orderDate
-            totalOrder.text = String.format("%.2f %s", order.totalAmount, itemView.context.getString(R.string.currency_sign))
+            totalOrder.text = CurrencyManager.convertPrice(order.totalAmount)
             dishName.text = formattedDishes
         }
     }

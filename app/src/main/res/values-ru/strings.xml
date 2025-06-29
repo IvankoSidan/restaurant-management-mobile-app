@@ -386,4 +386,9 @@
 
     <string name="google_sign_in_failed">Не удалось войти через Google: %1$d</string>
     <string name="google_sign_up_failed">Не удалось зарегистрироваться через Google: %1$d</string>
+
+    <string name="change_the_currency">Сменить валюту</string>
+
+    <string name="currency_changed_to_usd">Система успешно перешла на $</string>
+    <string name="currency_changed_to_rub">Система успешно перешла на ₽</string>
 </resources>
