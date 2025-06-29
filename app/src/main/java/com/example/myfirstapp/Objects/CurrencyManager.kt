@@ -1,8 +1,12 @@
 package com.example.myfirstapp.Objects
 
 import android.content.Context
+import android.graphics.Color
+import androidx.core.content.ContextCompat
 import com.example.myfirstapp.Interfaces.CurrencyListener
+import com.example.myfirstapp.R
 import com.example.myfirstapp.data.Enums.Currency
+import io.github.muddz.styleabletoast.StyleableToast
 
 object CurrencyManager {
     private var currentCurrency: Currency = Currency.USD
@@ -20,8 +24,19 @@ object CurrencyManager {
         currentCurrency = if (currentCurrency == Currency.USD) Currency.RUB else Currency.USD
         val prefs = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
         prefs.edit().putString(PREF_CURRENCY, currentCurrency.name).apply()
+
+        // Сообщение для тоста
+        val message = when (currentCurrency) {
+            Currency.USD -> context.getString(R.string.currency_changed_to_usd)
+            Currency.RUB -> context.getString(R.string.currency_changed_to_rub)
+        }
+
+        // Используем стиль successToast
+        StyleableToast.makeText(context, message, R.style.successToast).show()
+
         notifyCurrencyChanged()
     }
+
 
     fun addCurrencyListener(listener: CurrencyListener) {
         currencyListeners.add(listener)

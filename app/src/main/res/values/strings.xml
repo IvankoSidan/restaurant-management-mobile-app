@@ -383,4 +383,7 @@
     <string name="google_sign_up_failed">Google sign-up failed: %1$d</string>
 
     <string name="change_the_currency">Сhange the currency</string>
+
+    <string name="currency_changed_to_usd">System successfully switched to $</string>
+    <string name="currency_changed_to_rub">System successfully switched to ₽</string>
 </resources>

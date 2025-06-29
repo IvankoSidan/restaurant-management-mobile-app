@@ -17,6 +17,7 @@ import com.example.myfirstapp.ViewModels.GuestViewModel
 import com.example.myfirstapp.ViewModels.LoginViewModel
 import com.example.myfirstapp.data.Enums.Currency
 import com.example.myfirstapp.databinding.FragmentProfileBinding
+import io.github.muddz.styleabletoast.StyleableToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
