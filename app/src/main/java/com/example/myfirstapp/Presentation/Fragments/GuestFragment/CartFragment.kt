@@ -125,24 +125,37 @@ class CartFragment : Fragment(), ManagementCartListener, CartManagerListener {
                 )
             }
 
-            // Создаём или обновляем заказ
-            if (existingOrder == null) {
-                // Новый заказ
-                val created = orderViewModel.placeOrderSuspend(order, dishOrders)
-                orderViewModel.setCurrentOrder(created)
-            } else {
-                // Обновление существующего
-                orderViewModel.updateFullOrder(order, dishOrders)
-            }
+            try {
+                // Создаём или обновляем заказ
+                val resultOrder = if (existingOrder == null) {
+                    // Новый заказ
+                    orderViewModel.placeOrderSuspend(order, dishOrders).also {
+                        orderViewModel.setCurrentOrder(it)
+                    }
+                } else {
+                    // Обновление существующего
+                    orderViewModel.updateFullOrder(order, dishOrders)
+                    order // или можно получить обновленный заказ из ViewModel
+                }
 
-            // Очищаем корзину
-            guestViewModel.clearCart()
+                // Убедимся, что заказ установлен в ViewModel перед навигацией
+                orderViewModel.setCurrentOrder(resultOrder)
 
-            // Навигация
-            if (navigateToPayment) {
-                findNavController().navigate(R.id.paymentFragment)
-            } else {
-                findNavController().navigate(R.id.orderHistoryFragment)
+                // Очищаем корзину
+                guestViewModel.clearCart()
+
+                // Навигация только после успешного создания/обновления заказа
+                if (navigateToPayment) {
+                    findNavController().navigate(R.id.paymentFragment)
+                } else {
+                    findNavController().navigate(R.id.orderHistoryFragment)
+                }
+            } catch (e: Exception) {
+                StyleableToast.makeText(
+                    requireContext(),
+                    "Error processing order: ${e.message}",
+                    R.style.errorToast
+                ).show()
             }
         }
     }

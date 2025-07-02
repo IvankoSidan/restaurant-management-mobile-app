@@ -52,10 +52,11 @@ class AuthRepositoryImpl(
             val userDTO = UserDTO(name = name, email = email, password = password)
             val response = authApi.registerUser(userDTO)
             if (response.isSuccessful) {
+                val user = response.body()
                 if (rememberMe) {
                     login(email, password)
                 }
-                RegistrationResult.Success
+                RegistrationResult.Success(user = user)
             } else {
                 RegistrationResult.Failure(stringProvider.getStringResource(R.string.error_registration_failed))
             }
@@ -130,7 +131,7 @@ class AuthRepositoryImpl(
             val user = parseUser(userData)
             saveUserToPreferences(user, token)
             authInterceptor.setToken(token)
-            RegistrationResult.Success
+            RegistrationResult.Success(user)
         } else {
             RegistrationResult.Failure(stringProvider.getStringResource(R.string.error_registration_failed))
         }
