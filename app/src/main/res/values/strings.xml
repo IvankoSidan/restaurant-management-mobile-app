@@ -2,7 +2,6 @@
     <string name="app_name" translatable="false">MyFirstApp</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="order_history">Order History</string>
-    <string name="payment_method">Payment Methods</string>
     <string name="total">$0.0</string>
     <string name="pay_now">Pay Now</string>
     <string name="reserved">Reserved</string>
@@ -31,7 +30,7 @@
     <string name="reserved_tables">Reserved tables:</string>
     <string name="guest_count">Guest Count:</string>
     <string name="cardholder_name">Cardholder Name</string>
-    <string name="xxxx_xxxx_xxxx_xxxx">**** **** **** ****</string>
+    <string name="xxxx_xxxx_xxxx_xxxx">•••• •••• •••• ••••</string>
     <string name="card_holder">Card Holder</string>
     <string name="your_holder_name">Your Holder Name</string>
     <string name="_00_00">00/00</string>
@@ -61,10 +60,14 @@
     <string name="to_pay">To pay</string>
     <string name="change_order_info">Change Order</string>
     <string name="change">Confirm the changes</string>
-
     <string name="change_1">Change</string>
     <string name="booking_title">Reservations</string>
-
+    <string name="card_added_successfully">Card added successfully</string>
+    <string name="card_add_failed">Failed to add card</string>
+    <string name="enter_cvv">Please enter CVV</string>
+    <string name="select_payment_method">Please select a payment method</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="invalid_card_token">Invalid card token</string>
     <string name="credit_card">Credit Card</string>
     <string name="success_info">Success !</string>
     <string name="your_payment_was_successful_a_receipt_for_this_purchase_has_been_sent_to_your_email">Your payment was successful. A receipt for this purchase has been sent to your email.</string>
@@ -198,22 +201,6 @@
     <string name="no">No</string>
     <string name="error">Error\n</string>
     <string name="payment_method_null">Payment methods are null!</string>
-
-    <string name="payment_confirmation_success">Payment confirmed successfully!</string>
-    <string name="order_data_not_found">Order data not found!</string>
-    <string name="fill_card_details">Please fill in all card details!</string>
-    <string name="invalid_card_number">Invalid card number!</string>
-    <string name="invalid_expiration_date">Invalid expiration date!</string>
-    <string name="invalid_cvv">Invalid CVV!</string>
-    <string name="invalid_card_holder_name">Invalid card holder name!</string>
-    <string name="go_back_button">Go Back</string>
-    <string name="exit_popup_title">Payment completed!</string>
-    <string name="confirm_payment_1">Confirm Payment</string>
-
-    <string name="error_invalid_card_holder_name">Invalid card holder name. Only letters are allowed.</string>
-    <string name="error_invalid_cvv">Invalid CVV. Please enter 3 or 4 digits.</string>
-    <string name="error_invalid_expiration_date">Invalid expiration date. Please use MM/YY format.</string>
-    <string name="error_invalid_card_number">Invalid card number. Please enter 16 digits.</string>
     <string name="reservation_canceled">Reservation canceled!</string>
     <string name="select_booking_date">Select the booking date!</string>
     <string name="chosen_time_passed">The chosen time for today has already passed!</string>
@@ -275,7 +262,6 @@
     <string name="label_status">Status:</string>
     <string name="label_duration">Duration:</string>
     <string name="book_info">Booking Info</string>
-
 
 
     <string-array name="spinner_rate_items">
@@ -386,4 +372,33 @@
 
     <string name="currency_changed_to_usd">System successfully switched to $</string>
     <string name="currency_changed_to_rub">System successfully switched to ₽</string>
+
+    <string name="add_method_error">Failed to add payment method. Please try again.</string>
+    <string name="create_card_error">Failed to create card. Please check your details and try again.</string>
+    <string name="delete_method_error">Failed to delete payment method. Please try again later.</string>
+    <string name="payment_error">Payment processing error. Please try again.</string>
+    <string name="delete_card">Delete Card</string>
+    <string name="delete_card_confirmation">Are you sure you want to delete this card?</string>
+    <string name="error_saving_card">Error saving card. Please try again.</string>
+    <string name="no_payment_methods_found">No payment methods found !</string>
+
+
+    <string name="delete_card_title">Delete a card</string>
+    <string name="card_number_masked_format">•••• •••• •••• %s</string>
+    <string name="no_payment_method_selected">The payment method was not selected !</string>
+
+    <string name="error_empty_card_number">Please enter card number</string>
+    <string name="error_invalid_card_number">Invalid card number. Please enter 16 digits.</string>
+    <string name="invalid_card_number">Invalid card number</string>
+    <string name="error_empty_expiration_date">Please enter expiration date</string>
+    <string name="error_invalid_expiration_date">Invalid expiration date. Use MM/YY format.</string>
+    <string name="error_empty_cvv">Please enter CVV code</string>
+    <string name="error_invalid_cvv">Invalid CVV code. Please enter 3 digits.</string>
+    <string name="error_empty_card_holder_name">Please enter cardholder name</string>
+    <string name="error_invalid_card_holder_name">Invalid cardholder name. Use letters only.</string>
+    <string name="payment_confirmation_success">Payment successful!</string>
+    <string name="payment_failed">Payment failed</string>
+    <string name="select_card">Please select a card</string>
+    <string name="order_data_not_found">Order data not found</string>
+    <string name="fill_card_details">Please fill card details</string>
 </resources>

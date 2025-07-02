@@ -1,4 +1,11 @@
 <resources>
+    <string name="payment_failed">Платёж не прошёл. Пожалуйста, попробуйте ещё раз.</string>
+    <string name="card_added_successfully">Карта успешно добавлена</string>
+    <string name="card_add_failed">Не удалось добавить карту</string>
+    <string name="invalid_card_token">Неверный токен карты</string>
+    <string name="enter_cvv">Пожалуйста, введите CVV</string>
+
+    <string name="select_payment_method">Пожалуйста, выберите способ оплаты</string>
     <string name="app_name" translatable="false">MyFirstApp</string>
     <string name="hello_blank_fragment">Привет, пустой фрагмент</string>
     <string name="order_history">История заказов</string>
@@ -31,7 +38,8 @@
     <string name="reserved_tables">Забронированные столы:</string>
     <string name="guest_count">Количество гостей:</string>
     <string name="cardholder_name">Имя держателя карты</string>
-    <string name="xxxx_xxxx_xxxx_xxxx">**** **** **** ****</string>
+    <string name="xxxx_xxxx_xxxx_xxxx">•••• •••• •••• ••••</string>
+    <string name="invalid_card_number">Неверный номер карты</string>
     <string name="card_holder">Держатель карты</string>
     <string name="your_holder_name">Ваше имя держателя</string>
     <string name="_00_00">00/00</string>
@@ -205,21 +213,7 @@
     <string name="total_price_1">Итоговая цена</string>
     <string name="add_to_cart">В корзину</string>
 
-    <string name="payment_confirmation_success">Оплата успешно подтверждена !</string>
-    <string name="order_data_not_found">Данные заказа не найдены !</string>
-    <string name="fill_card_details">Пожалуйста, заполните все данные карты !</string>
-    <string name="invalid_card_number">Некорректный номер карты!</string>
-    <string name="invalid_expiration_date">Некорректная дата истечения срока действия! Пожалуйста, используйте формат ММ/ГГ.</string>
-    <string name="invalid_cvv">Некорректный CVV!</string>
-    <string name="invalid_card_holder_name">Некорректное имя держателя карты !</string>
-    <string name="go_back_button">Вернуться назад</string>
-    <string name="exit_popup_title">Оплата завершена!</string>
-    <string name="confirm_payment_1">Подтвердить оплату</string>
 
-    <string name="error_invalid_card_holder_name">Некорректное имя держателя карты. Допускаются только буквы.</string>
-    <string name="error_invalid_cvv">Некорректный CVV. Пожалуйста, введите 3 или 4 цифры.</string>
-    <string name="error_invalid_expiration_date">Некорректная дата истечения срока действия. Пожалуйста, используйте формат ММ/ГГ.</string>
-    <string name="error_invalid_card_number">Некорректный номер карты. Пожалуйста, введите 16 цифр.</string>
     <string name="reservation_canceled">Бронирование отменено !</string>
     <string name="select_booking_date">Выберите дату бронирования !</string>
     <string name="chosen_time_passed">Выбранное время уже прошло !</string>
@@ -391,4 +385,32 @@
 
     <string name="currency_changed_to_usd">Система успешно перешла на $</string>
     <string name="currency_changed_to_rub">Система успешно перешла на ₽</string>
+
+    <!-- Ошибки -->
+    <string name="add_method_error">Не удалось добавить способ оплаты. Пожалуйста, попробуйте снова.</string>
+    <string name="create_card_error">Не удалось создать карту. Проверьте данные и попробуйте снова.</string>
+    <string name="delete_method_error">Не удалось удалить способ оплаты. Попробуйте позже.</string>
+    <string name="payment_error">Ошибка при обработке платежа. Пожалуйста, попробуйте еще раз.</string>
+
+    <!-- Диалог удаления -->
+    <string name="delete_card">Удалить карту</string>
+    <string name="delete_card_confirmation">Вы уверены, что хотите удалить эту карту?</string>
+    <string name="select_card">Пожалуйста, выберите карту</string>
+    <string name="error_saving_card">Ошибка при сохранении карты. Попробуйте еще раз.</string>
+    <string name="no_payment_methods_found">Способы оплаты не найдены !</string>
+    <string name="delete_card_title">Удалить карту</string>
+    <string name="card_number_masked_format">•••• •••• •••• %s</string>
+    <string name="no_payment_method_selected">Не был выбран метод оплаты !</string>
+
+    <string name="error_empty_card_number">Введите номер карты</string>
+    <string name="error_invalid_card_number">Неверный номер карты. Введите 16 цифр.</string>
+    <string name="error_empty_expiration_date">Введите срок действия</string>
+    <string name="error_invalid_expiration_date">Неверный срок действия. Используйте формат ММ/ГГ.</string>
+    <string name="error_empty_cvv">Введите CVV код</string>
+    <string name="error_invalid_cvv">Неверный CVV код. Введите 3 цифры.</string>
+    <string name="error_empty_card_holder_name">Введите имя владельца карты</string>
+    <string name="error_invalid_card_holder_name">Неверное имя владельца. Используйте только буквы.</string>
+    <string name="payment_confirmation_success">Оплата прошла успешно!</string>
+    <string name="order_data_not_found">Данные заказа не найдены</string>
+    <string name="fill_card_details">Заполните данные карты</string>
 </resources>
