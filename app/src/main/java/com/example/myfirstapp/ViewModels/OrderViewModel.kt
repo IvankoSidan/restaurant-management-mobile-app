@@ -54,7 +54,7 @@ class OrderViewModel(private val repository: OrderRepository) : ViewModel() {
     }
 
     fun setCurrentOrder(order: Order) {
-        _currentOrder.value = order
+        _currentOrder.value = order.copy()
     }
 
     fun updateFullOrder(order: Order, dishOrders: List<DishOrder>) = viewModelScope.launch {
@@ -86,6 +86,8 @@ class OrderViewModel(private val repository: OrderRepository) : ViewModel() {
     fun loadFormattedDishes(orderId: Long) = viewModelScope.launch {
         _formattedDishes.value = repository.getFormattedDishesForOrder(orderId)
     }
+
+
 
     suspend fun getDishesByIds(ids: List<Long>): List<Dish> = repository.getDishesByIds(ids)
 }

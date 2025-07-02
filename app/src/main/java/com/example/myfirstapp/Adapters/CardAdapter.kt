@@ -12,6 +12,12 @@ import com.example.myfirstapp.data.Models.PaymentMethod
 import com.example.myfirstapp.R
 import com.example.myfirstapp.data.Enums.CardType
 
+/**
+ * Адаптер для отображения типов банковских карт в горизонтальном списке
+ *
+ * @param cardTypes список типов карт для отображения
+ * @param listener обработчик событий выбора карты
+ */
 class CardAdapter(
     private var cardTypes: List<CardType>,
     private val listener: CardAdapterListener
@@ -20,23 +26,29 @@ class CardAdapter(
     private var selectedPosition: Int = RecyclerView.NO_POSITION
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageCardItem: ImageView = itemView.findViewById(R.id.imageCardItem)
-        val selectedImage: ImageView = itemView.findViewById(R.id.selectedImage)
+        private val imageCardItem: ImageView = itemView.findViewById(R.id.imageCardItem)
+        private val selectedImage: ImageView = itemView.findViewById(R.id.selectedImage)
         private val layoutCard: CardView = itemView.findViewById(R.id.constraintLayoutImage)
 
         fun bind(cardType: CardType, isSelected: Boolean) {
             imageCardItem.setImageResource(cardType.imageRes)
-            selectedImage.visibility = if (isSelected) View.VISIBLE else View.GONE
 
-            layoutCard.background = if (isSelected) {
-                ContextCompat.getDrawable(itemView.context, R.drawable.border_selected)
+            if (cardType == CardType.OTHER) {
+                selectedImage.visibility = View.GONE
+                layoutCard.background = null
             } else {
-                null
+                selectedImage.visibility = if (isSelected) View.VISIBLE else View.GONE
+                layoutCard.background = if (isSelected) {
+                    ContextCompat.getDrawable(itemView.context, R.drawable.border_selected)
+                } else {
+                    null
+                }
             }
 
             itemView.setOnClickListener {
                 val previousPosition = selectedPosition
                 selectedPosition = adapterPosition
+
                 notifyItemChanged(previousPosition)
                 notifyItemChanged(selectedPosition)
 
@@ -50,7 +62,8 @@ class CardAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.image_card_item, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.image_card_item, parent, false)
         return CardViewHolder(view)
     }
 

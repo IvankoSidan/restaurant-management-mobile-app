@@ -18,7 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back_setting" />
 
-
     <ImageView
         android:id="@+id/personImage"
         android:layout_width="wrap_content"

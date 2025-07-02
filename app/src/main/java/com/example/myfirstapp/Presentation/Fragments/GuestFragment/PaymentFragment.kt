@@ -17,6 +17,7 @@ import com.example.myfirstapp.data.Models.PaymentMethod
 import com.example.myfirstapp.R
 import com.example.myfirstapp.ViewModels.OrderViewModel
 import com.example.myfirstapp.ViewModels.PaymentViewModel
+import com.example.myfirstapp.data.Enums.OrderStatus
 import com.example.myfirstapp.databinding.FragmentPaymentBinding
 import io.github.muddz.styleabletoast.StyleableToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,34 +55,58 @@ class PaymentFragment : Fragment(), OnPaymentListener {
 
     private fun setupUI() {
         orderViewModel.currentOrder.observe(viewLifecycleOwner) { order ->
-            order?.let {
-                paymentViewModel.getPaymentMethods(order.userId)
-                binding.apply {
-                    orderDescription.text = "#${it.orderId}"
-                    dateTimeOrdering.text = it.orderDate
-                    totalAmount.text = CurrencyManager.convertPrice(it.totalAmount)
-                    priceText.text = CurrencyManager.convertPrice(it.totalAmount)
-                }
+            if (order == null) {
+                findNavController().popBackStack()
+                return@observe
+            }
+
+            paymentViewModel.getPaymentMethods(order.userId)
+            binding.apply {
+                orderDescription.text = "#${order.orderId}"
+                dateTimeOrdering.text = order.orderDate
+                totalAmount.text = CurrencyManager.convertPrice(order.totalAmount)
+                priceText.text = CurrencyManager.convertPrice(order.totalAmount)
             }
         }
     }
 
     private fun handlePayment() {
+        val currentOrder = orderViewModel.currentOrder.value
+        if (currentOrder == null || currentOrder.status == OrderStatus.PAID) {
+            SuccessPaymentDialogFragment().show(
+                parentFragmentManager,
+                "SuccessPaymentDialog"
+            )
+            return
+        }
+
         val paymentMethods = paymentViewModel.paymentMethods.value
         if (paymentMethods.isNullOrEmpty()) {
             AddCardFragment().show(parentFragmentManager, "AddCardFragmentTag")
             return
         }
 
-        val selectedPaymentMethod = paymentViewModel.selectedMethod.value
+        val selectedPaymentMethod = paymentMethodAdapter.getSelectedPaymentMethod()
+            ?: paymentMethods.firstOrNull()
+
         if (selectedPaymentMethod == null) {
-            paymentViewModel.selectMethod(paymentMethods[0])
+            StyleableToast.makeText(
+                requireContext(),
+                getString(R.string.no_payment_method_selected),
+                R.style.errorToast
+            ).show()
+            return
         }
 
-        onPaymentMethodClick(paymentViewModel.selectedMethod.value!!)
+        paymentViewModel.selectMethod(selectedPaymentMethod)
         paymentViewModel.setSaveCardDetails(binding.saveCardDetails.isChecked)
-        PaymentDetailsFragment().show(childFragmentManager, "PaymentDetailsFragmentTag")
+
+        PaymentDetailsFragment().show(
+            childFragmentManager,
+            PaymentDetailsFragment::class.java.simpleName
+        )
     }
+
 
     private fun setupRecyclerView() {
         paymentMethodAdapter = PaymentMethodAdapter(mutableListOf(), this)
@@ -89,9 +114,13 @@ class PaymentFragment : Fragment(), OnPaymentListener {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = paymentMethodAdapter
         }
+
         paymentViewModel.paymentMethods.observe(viewLifecycleOwner) { methods ->
             methods?.let {
                 paymentMethodAdapter.updateData(it)
+                if (it.isNotEmpty() && paymentViewModel.selectedMethod.value == null) {
+                    paymentViewModel.selectMethod(it.first())
+                }
             } ?: run {
                 StyleableToast.makeText(
                     requireContext(),
@@ -133,4 +162,7 @@ class PaymentFragment : Fragment(), OnPaymentListener {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
+
